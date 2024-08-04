@@ -18,7 +18,7 @@ sudo apt update && sudo apt install -y \
 	- `git config --global user.email "<my email>" && git config --global user.name "<my username>"`
 	- [Generating a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)	
 	- [Adding a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
-- Clone this repo to ~/.dotfiles and `cd ~/.dotfiles && stow *`
+- Clone this repo to ~/.dotfiles and `cd ~/.dotfiles && stow -t ~ */`
 
 - Install softwares
 	- go, gvm
@@ -28,6 +28,8 @@ sudo apt update && sudo apt install -y \
 	- gcc, g++, clang, make
 	- nvim
 	- tmux
+ 		- tmux plugin manager
+   		- tmuxifier
 	- lazygit
 	- bruno
 	- dbeaver
