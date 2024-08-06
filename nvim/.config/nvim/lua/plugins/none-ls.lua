@@ -1,9 +1,9 @@
 return {
-  "nvimtools/none-ls.nvim",
+  'nvimtools/none-ls.nvim',
   config = function()
-    local null_ls = require("null-ls")
+    local null_ls = require 'null-ls'
 
-    null_ls.setup({
+    null_ls.setup {
       sources = {
         null_ls.builtins.formatting.stylua,
 
@@ -15,6 +15,6 @@ return {
         null_ls.builtins.formatting.goimports,
         null_ls.builtins.formatting.golines,
       },
-    })
+    }
   end,
 }
