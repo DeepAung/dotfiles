@@ -18,3 +18,4 @@ export LC_ALL=en_US.UTF-8
 
 eval "$(tmuxifier init -)"
 alias tmux='tmux -u'
+alias actconda='source ~/anaconda3/bin/activate'

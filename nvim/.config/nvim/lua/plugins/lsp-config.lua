@@ -51,26 +51,6 @@ return {
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
-    local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
-    local on_attach = function(client, bufnr)
-      local custom_format = require('utils').custom_format
-      vim.keymap.set('n', '<leader>lf', custom_format, { desc = 'format current file' })
-
-      if client.supports_method 'textDocument/formatting' then
-        vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
-        vim.api.nvim_create_autocmd('BufWritePre', {
-          group = augroup,
-          buffer = bufnr,
-          callback = function()
-            if vim.bo.filetype == 'cpp' then
-              return
-            end
-            custom_format()
-          end,
-        })
-      end
-    end
-
     local servers = {
       cssls = {},
       tsserver = {},
@@ -135,6 +115,7 @@ return {
       'gofumpt',
       'goimports',
       'golines',
+      'black',
     })
 
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -143,6 +124,22 @@ return {
       handlers = {
         function(server_name)
           local server = servers[server_name] or {}
+
+          local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
+          local function on_attach(client, bufnr)
+            local custom_format = require('utils').custom_format
+            vim.keymap.set('n', '<leader>lf', custom_format, { desc = 'format current file' })
+
+            if client.supports_method 'textDocument/formatting' then
+              vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
+              vim.api.nvim_create_autocmd('BufWritePre', {
+                group = augroup,
+                buffer = bufnr,
+                callback = custom_format,
+              })
+            end
+          end
+
           -- This handles overriding only values explicitly passed
           -- by the server configuration above. Useful when disabling
           -- certain features of an LSP (for example, turning off formatting for tsserver)
