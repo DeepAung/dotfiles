@@ -41,11 +41,6 @@ vim.filetype.add {
 vim.keymap.set({ 'n', 'v' }, 'H', '^')
 vim.keymap.set({ 'n', 'v' }, 'L', '$')
 
--- vim.keymap.set({ "n", "v" }, "h", "gh")
--- vim.keymap.set({ "n", "v" }, "j", "gj")
--- vim.keymap.set({ "n", "v" }, "k", "gk")
--- vim.keymap.set({ "n", "v" }, "l", "gl")
-
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')

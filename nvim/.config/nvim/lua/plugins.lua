@@ -13,7 +13,11 @@ return {
     'xeluxee/competitest.nvim',
     dependencies = 'MunifTanjim/nui.nvim',
     config = function()
-      require('competitest').setup()
+      require('competitest').setup {
+        run_command = {
+          python = { exec = 'python3', args = { '$(FNAME)' } },
+        },
+      }
 
       vim.keymap.set('n', '<leader>cpa', ':CompetiTest add_testcase<CR>')
       vim.keymap.set('n', '<leader>cpe', ':CompetiTest edit_testcase<CR>')
@@ -22,7 +26,4 @@ return {
       vim.keymap.set('n', '<leader>cpx', ':CompetiTest run_no_compile<CR>')
     end,
   },
-  -- {
-  --   'girishji/pythondoc.vim',
-  -- },
 }

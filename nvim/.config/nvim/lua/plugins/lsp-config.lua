@@ -52,12 +52,9 @@ return {
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
     local servers = {
-      cssls = {},
-      tsserver = {},
       clangd = {
         cmd = { 'clangd', '--offset-encoding=utf-16' },
       },
-      volar = {},
       sqlls = {},
       pyright = {},
       emmet_ls = {
@@ -70,11 +67,14 @@ return {
       htmx = {
         filetypes = { 'html', 'templ' },
       },
+      cssls = {},
       tailwindcss = {
         filetypes = { 'html', 'templ', 'astro', 'javascript', 'typescript', 'react' },
         init_options = { userLanguages = { templ = 'html' } },
       },
       templ = {},
+      volar = {},
+      tsserver = {},
 
       lua_ls = {
         settings = {

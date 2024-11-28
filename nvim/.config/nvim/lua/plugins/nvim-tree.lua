@@ -23,7 +23,6 @@ return {
     end
 
     map('<leader>n', api.tree.toggle, 'Toggle')
-    -- map("<C-n>", api.tree.toggle, "Toggle")
     map('?', api.tree.toggle_help, 'Help')
   end,
 }

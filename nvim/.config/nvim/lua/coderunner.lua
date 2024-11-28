@@ -35,12 +35,16 @@ local exec_command = function()
     return
   end
 
-  local key = vim.api.nvim_replace_termcodes(':split<CR>:terminal ' .. data.exec .. '<CR>', true, false, true)
+  local key = vim.api.nvim_replace_termcodes(':split<CR>:terminal ' .. data.exec .. '<CR>' .. 'i', true, false, true)
   vim.api.nvim_feedkeys(key, 'n', false)
 end
 
 vim.keymap.set('n', '<leader>cb', build_command, { desc = '[B]uild command' })
 vim.keymap.set('n', '<leader>ce', exec_command, { desc = '[E]xec command' })
+vim.keymap.set('n', '<leader>cr', function()
+  build_command()
+  exec_command()
+end, { desc = '[R]un command ([B]uild and [E]xec)' })
 
 function get_lang_data()
   local lang = lang_maps[vim.bo.filetype]
