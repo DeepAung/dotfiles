@@ -9,12 +9,5 @@ return {
     vim.keymap.set('n', '<leader>tt', ':ToggleTerm direction=tab<CR>', { desc = 'Toggle [T]ab terminal' })
     vim.keymap.set('n', '<leader>tf', ':ToggleTerm direction=float<CR>', { desc = 'Toggle [F]loat terminal' })
     vim.keymap.set('n', '<leader>ta', ':ToggleTermToggleAll<CR>', { desc = 'Toggle [A]ll terminal' })
-
-    local Terminal = require('toggleterm.terminal').Terminal
-    local lazygit = Terminal:new { cmd = 'lazygit', hidden = true }
-    local function toggle_lazygit()
-      lazygit:toggle(nil, 'tab')
-    end
-    vim.keymap.set('n', '<leader>lg', toggle_lazygit, { desc = 'Toggle [L]azy[G]it' })
   end,
 }
