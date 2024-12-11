@@ -54,6 +54,7 @@ return {
     local servers = {
       clangd = {
         cmd = { 'clangd', '--offset-encoding=utf-16' },
+        filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
       },
       sqlls = {},
       pyright = {},
@@ -74,7 +75,7 @@ return {
       },
       templ = {},
       volar = {},
-      tsserver = {},
+      ts_ls = {},
 
       lua_ls = {
         settings = {
@@ -100,6 +101,9 @@ return {
           },
         },
       },
+
+      rust_analyzer = {},
+      buf = {},
     }
 
     -- Ensure the servers and tools above are installed

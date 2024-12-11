@@ -6,10 +6,20 @@ local lang_maps = {
   go = { build = 'go build', exec = 'go run %' },
   rust = { exec = 'cargo run' },
   javascript = { exec = 'node %' },
-  -- typescript = { build = "deno compile %", exec = "deno run %" },
+  typescript = { exec = 'node %' },
 }
 
-local build_command = function()
+local function get_lang_data()
+  local lang = lang_maps[vim.bo.filetype]
+  if lang == nil then
+    print('error: lang for filetype ' .. vim.bo.filetype .. ' not found')
+    return nil
+  end
+
+  return lang
+end
+
+local function build_command()
   local data = get_lang_data()
   if data == nil then
     return
@@ -24,7 +34,7 @@ local build_command = function()
   vim.api.nvim_feedkeys(key, 'n', false)
 end
 
-local exec_command = function()
+local function exec_command()
   local data = get_lang_data()
   if data == nil then
     return
@@ -45,13 +55,3 @@ vim.keymap.set('n', '<leader>cr', function()
   build_command()
   exec_command()
 end, { desc = '[R]un command ([B]uild and [E]xec)' })
-
-function get_lang_data()
-  local lang = lang_maps[vim.bo.filetype]
-  if lang == nil then
-    print('error: lang for filetype ' .. vim.bo.filetype .. ' not found')
-    return nil
-  end
-
-  return lang
-end

@@ -1,11 +1,13 @@
 local M = {}
 
 M.custom_format = function()
-  if vim.bo.filetype == 'cpp' then
+  print 'custom_format called'
+  local filetype = vim.bo.filetype
+  if filetype == 'cpp' or filetype == 'c' then
     return
   end
 
-  if vim.bo.filetype == 'templ' then
+  if filetype == 'templ' then
     local bufnr = vim.api.nvim_get_current_buf()
     local filename = vim.api.nvim_buf_get_name(bufnr)
     local cmd = 'templ fmt ' .. vim.fn.shellescape(filename)

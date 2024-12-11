@@ -41,10 +41,6 @@ return {
     local luasnip = require 'luasnip'
 
     luasnip.filetype_extend('templ', { 'html' })
-
-    -- INFO: don't know if we need this line
-    -- require("luasnip/loaders/from_vscode").lazy_load()
-
     luasnip.config.setup {}
 
     cmp.setup {

@@ -22,7 +22,7 @@ return {
       vim.keymap.set('n', keys, func, { desc = 'nvim-tree: ' .. desc })
     end
 
-    map('<leader>n', api.tree.toggle, 'Toggle')
+    map('<leader>e', api.tree.toggle, 'Toggle')
     map('?', api.tree.toggle_help, 'Help')
   end,
 }
