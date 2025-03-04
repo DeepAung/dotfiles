@@ -33,6 +33,7 @@ vim.filetype.add {
   extension = { templ = 'templ' },
   pattern = {
     ['%.env%.[%w_.-]+'] = 'sh',
+    ['.*/hypr/.*%.conf'] = 'hyprlang',
   },
 }
 

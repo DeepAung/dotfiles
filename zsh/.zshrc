@@ -1,6 +1,3 @@
-# Start or enter a PID namespace in WSL2
-source /usr/sbin/start-systemd-namespace
-
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -103,8 +100,6 @@ source $ZSH/oh-my-zsh.sh
 alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 
-source ~/.commonrc.sh
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 HISTFILE=~/.zsh_history
@@ -112,11 +107,4 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 
-function y() {
-  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-  yazi "$@" --cwd-file="$tmp"
-  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-    builtin cd -- "$cwd"
-  fi
-  rm -f -- "$tmp"
-}
+source ~/.commonrc.sh

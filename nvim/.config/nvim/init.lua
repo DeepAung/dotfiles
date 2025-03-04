@@ -30,6 +30,6 @@ local opts = {
 }
 
 require 'settings'
-require 'ignored.settings'
+pcall(require, 'ignored.settings')
 require 'coderunner'
 require('lazy').setup('plugins', opts)

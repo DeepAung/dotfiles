@@ -1,0 +1,12 @@
+cbonsai
+cbonsai-debug
+eclipse-java-bin
+hyprshot
+miniconda3
+nvm
+spotify
+visual-studio-code-bin
+visual-studio-code-bin-debug
+yay
+yay-debug
+zen-browser-bin

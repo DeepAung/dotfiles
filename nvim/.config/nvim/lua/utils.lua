@@ -1,7 +1,6 @@
 local M = {}
 
 M.custom_format = function()
-  print 'custom_format called'
   local filetype = vim.bo.filetype
   if filetype == 'cpp' or filetype == 'c' then
     return
