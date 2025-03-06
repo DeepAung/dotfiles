@@ -5,6 +5,7 @@
   "modules-center": ["hyprland/window"],
   "modules-right": [
     "network",
+    "bluetooth",
     "pulseaudio",
     "battery",
     "clock",
@@ -22,6 +23,11 @@
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "  Disconnected",
     "tooltip-format-wifi": "Signal Strenght: {signalStrength}%",
+  },
+  "bluetooth": {
+    "controller": "blueman", // specify the alias of the controller if there are more than 1 on the system
+    "format": "󰂯 {status}",
+    "on-click": "blueman-manager",
   },
   "pulseaudio": {
     "format": "{icon}  {volume}%",

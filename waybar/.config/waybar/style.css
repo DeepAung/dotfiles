@@ -18,8 +18,8 @@ window#waybar {
 
 #window {
   margin: 8px;
-  padding-left: 8;
-  padding-right: 8;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
 button {
@@ -65,6 +65,7 @@ button:hover {
 #wireplumber,
 #tray,
 #network,
+#bluetooth,
 #mode,
 #scratchpad,
 #language,
@@ -78,13 +79,18 @@ button:hover {
 }
 
 #network {
-  color: @yellow;
-  border-bottom: 2px solid @yellow;
+  color: @blue;
+  border-bottom: 2px solid @blue;
+}
+
+#bluetooth {
+  color: @teal;
+  border-bottom: 2px solid @teal;
 }
 
 #pulseaudio {
-  color: @blue;
-  border-bottom: 2px solid @blue;
+  color: @yellow;
+  border-bottom: 2px solid @yellow;
 }
 
 #battery {
@@ -123,12 +129,12 @@ button:hover {
 }
 
 /* If workspaces is the leftmost module, omit left margin */
-.modules-left>widget:first-child>#workspaces {
+.modules-left > widget:first-child > #workspaces {
   margin-left: 0;
 }
 
 /* If workspaces is the rightmost module, omit right margin */
-.modules-right>widget:last-child>#workspaces {
+.modules-right > widget:last-child > #workspaces {
   margin-right: 0;
 }
 
