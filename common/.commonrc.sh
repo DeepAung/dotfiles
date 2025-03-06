@@ -9,6 +9,8 @@ source /usr/share/nvm/init-nvm.sh
 alias tmux='tmux -u'
 alias actconda='source /opt/miniconda3/etc/profile.d/conda.sh'
 alias wallpaper='hyprctl hyprpaper reload ,$(find ~/.dotfiles/wallpapers -type f | fzf)'
+alias v='nvim'
+alias lg='lazygit'
 
 function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
