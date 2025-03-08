@@ -4,24 +4,7 @@ return {
   lazy = false,
   opts = {
     bigfile = { enabled = true },
-    -- dashboard = {
-    --   enabled = true,
-    --   sections = {
-    --     {
-    --       section = 'terminal',
-    --       cmd = 'chafa ~/.config/kama-pixel.png --format symbols --symbols vhalf --colors full --size 40x32; sleep .1',
-    --       height = 32,
-    --       width = 40,
-    --       padding = 1,
-    --     },
-    --     {
-    --       pane = 2,
-    --       { padding = 7 },
-    --       { section = 'keys', gap = 1, padding = 1 },
-    --       { section = 'startup' },
-    --     },
-    --   },
-    -- },
+    -- dashboard = { enabled = true },
     -- indent = { enabled = true },
     input = { enabled = true },
     notifier = {

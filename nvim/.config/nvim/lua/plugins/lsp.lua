@@ -69,10 +69,8 @@ return {
         filetypes = { 'html', 'templ' },
       },
       cssls = {},
-      tailwindcss = {
-        filetypes = { 'html', 'templ', 'astro', 'javascript', 'typescript', 'react' },
-        init_options = { userLanguages = { templ = 'html' } },
-      },
+
+      tailwindcss = {},
       templ = {},
       volar = {},
       ts_ls = {},
@@ -124,6 +122,7 @@ return {
 
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+    ---@diagnostic disable-next-line: missing-fields
     require('mason-lspconfig').setup {
       handlers = {
         function(server_name)
@@ -131,17 +130,22 @@ return {
 
           local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
           local function on_attach(client, bufnr)
-            local custom_format = require('utils').custom_format
-            vim.keymap.set('n', '<leader>lf', custom_format, { desc = 'format current file' })
+            local utils = require 'utils'
+            vim.keymap.set('n', '<leader>lf', utils.custom_format, { desc = 'format current file' })
 
-            if client.supports_method 'textDocument/formatting' then
-              vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
-              vim.api.nvim_create_autocmd('BufWritePre', {
-                group = augroup,
-                buffer = bufnr,
-                callback = custom_format,
-              })
+            if utils.ignore_format_on_save(vim.bo.filetype) then
+              return
             end
+            if not client.supports_method 'textDocument/formatting' then
+              return
+            end
+
+            vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
+            vim.api.nvim_create_autocmd('BufWritePre', {
+              group = augroup,
+              buffer = bufnr,
+              callback = utils.custom_format,
+            })
           end
 
           -- This handles overriding only values explicitly passed

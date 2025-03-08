@@ -10,7 +10,10 @@ return {
 
         null_ls.builtins.formatting.prettier,
 
-        null_ls.builtins.formatting.clang_format,
+        null_ls.builtins.formatting.clang_format.with {
+          disabled_filetypes = { 'java' },
+        },
+        null_ls.builtins.formatting.google_java_format,
 
         null_ls.builtins.formatting.gofumpt,
         null_ls.builtins.formatting.goimports,
@@ -20,17 +23,22 @@ return {
       },
 
       on_attach = function(client, bufnr)
-        local custom_format = require('utils').custom_format
-        vim.keymap.set('n', '<leader>lf', custom_format, { desc = 'format current file' })
+        local utils = require 'utils'
+        vim.keymap.set('n', '<leader>lf', utils.custom_format, { desc = 'format current file' })
 
-        if client.supports_method 'textDocument/formatting' then
-          vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
-          vim.api.nvim_create_autocmd('BufWritePre', {
-            group = augroup,
-            buffer = bufnr,
-            callback = custom_format,
-          })
+        if utils.ignore_format_on_save(vim.bo.filetype) then
+          return
         end
+        if not client.supports_method 'textDocument/formatting' then
+          return
+        end
+
+        vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
+        vim.api.nvim_create_autocmd('BufWritePre', {
+          group = augroup,
+          buffer = bufnr,
+          callback = utils.custom_format,
+        })
       end,
     }
   end,

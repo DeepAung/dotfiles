@@ -1,10 +1,13 @@
 local M = {}
 
+M.ignore_format_on_save = function(filetype)
+  local list = { cpp = true, c = true }
+
+  return list[filetype] ~= nil
+end
+
 M.custom_format = function()
   local filetype = vim.bo.filetype
-  if filetype == 'cpp' or filetype == 'c' then
-    return
-  end
 
   if filetype == 'templ' then
     local bufnr = vim.api.nvim_get_current_buf()
