@@ -102,6 +102,7 @@ return {
 
       rust_analyzer = {},
       buf = {},
+      graphql = {},
     }
 
     -- Ensure the servers and tools above are installed
