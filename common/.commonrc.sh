@@ -11,7 +11,8 @@ source /usr/share/nvm/init-nvm.sh
 
 alias tmux='tmux -u'
 alias actconda='source /opt/miniconda3/etc/profile.d/conda.sh'
-alias wallpaper='hyprctl hyprpaper reload ,$(find ~/.dotfiles/wallpapers -type f | fzf)'
+alias hypr-change-wallpaper='hyprctl hyprpaper reload ,$(find ~/.dotfiles/wallpapers -type f | fzf)'
+alias kde-change-wallpaper='bash /home/deepaung/.dotfiles/common/kde-change-wallpaper.sh'
 alias v='nvim'
 alias lg='lazygit'
 
