@@ -22,7 +22,22 @@ yay -S --needed - < aurpkglist.txt
 echo "linking dotfiles"
 cd ~/.dotfiles && stow -t ~ */
 
-echo "enable and start services (NetworkManager, bluetooth)"
+echo "enable and start services (NetworkManager, bluetooth, ssdm, docker)"
 sudo systemctl enable --now NetworkManager.service
 sudo systemctl enable --now bluetooth.service
 sudo systemctl enable --now ssdm.service
+sudo systemctl enable --now docker.service
+sudo systemctl enable --now containerd.service
+
+echo "create docker group and add it to current user"
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+
+echo "install go packages"
+go install github.com/air-verse/air@latest # air
+go install github.com/go-jet/jet/v2/cmd/jet@latest # jet
+go install github.com/a-h/templ/cmd/templ@latest # templ
+go install google.golang.org/protobuf/cmd/protoc-gen-go@latest # grpc
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+go install -tags 'postgres sqlite sqlite3' github.com/golang-migrate/migrate/v4/cmd/migrate@latest # migrate
