@@ -1,9 +1,11 @@
+betterdiscord-installer
+betterdiscord-installer-debug
 cbonsai
 cbonsai-debug
 eclipse-java-bin
+google-cloud-cli
 hyprshot
 miniconda3
-nvm
 spotify
 visual-studio-code-bin
 visual-studio-code-bin-debug
