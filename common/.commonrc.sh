@@ -1,7 +1,10 @@
 export EDITOR=nvim
 export BROWSER=zen-browser
+export GBM_BACKEND=nvidia-drm
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
 
 export PATH="$HOME/.tmuxifier/bin:$PATH"
+export PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
 eval "$(tmuxifier init -)"
 
 source /usr/share/nvm/init-nvm.sh
@@ -22,9 +25,9 @@ function y() {
 }
 
 # rainbow cowsay say random thing
-cowsay_array=($(ls /usr/share/cowsay/cows/))
-cowsay_variant=${cowsay_array[ $RANDOM % ${#cowsay_array[@]} ]}
-fortune | cowsay -f /usr/share/cowsay/cows/$cowsay_variant | lolcat
+cowsay_array=($(find /usr/share/cowsay/cows -type f))
+selected_cowsay=${cowsay_array[ $RANDOM % ${#cowsay_array[@]} ]}
+fortune | cowsay -f $selected_cowsay | lolcat
 
 # # cbonsai say random thing
 # random_text=$(fortune)

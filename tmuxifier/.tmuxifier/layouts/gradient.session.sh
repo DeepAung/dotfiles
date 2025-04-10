@@ -26,6 +26,10 @@ if initialize_session "gradient"; then
 
   split_h
   run_cmd "cd grader-server && make air"
+
+  new_window "cms"
+  select_window 3
+  run_cmd "cd ../cms && nvim"
 fi
 
 # Finalize session creation and switch/attach to it.
