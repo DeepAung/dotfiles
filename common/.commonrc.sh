@@ -5,6 +5,7 @@ export __GLX_VENDOR_LIBRARY_NAME=nvidia
 
 export PATH="$HOME/.tmuxifier/bin:$PATH"
 export PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
+export PATH="$PATH:$HOME/.duckdb/cli/latest"
 eval "$(tmuxifier init -)"
 
 source /usr/share/nvm/init-nvm.sh

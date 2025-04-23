@@ -41,3 +41,7 @@ go install github.com/a-h/templ/cmd/templ@latest # templ
 go install google.golang.org/protobuf/cmd/protoc-gen-go@latest # grpc
 go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 go install -tags 'postgres sqlite sqlite3' github.com/golang-migrate/migrate/v4/cmd/migrate@latest # migrate
+go install github.com/pressly/goose/v3/cmd/goose@latest
+
+echo "install duckdb"
+curl https://install.duckdb.org | sh
