@@ -7,10 +7,12 @@ return {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
 
     -- Useful status updates for LSP.
-    { 'j-hui/fidget.nvim', opts = {} },
+    { 'j-hui/fidget.nvim',      opts = {} },
 
     -- used for completion, annotations and signatures of Neovim apis
-    { 'folke/neodev.nvim', opts = {} },
+    { 'folke/neodev.nvim',      opts = {} },
+
+    { 'mfussenegger/nvim-jdtls' },
   },
   config = function()
     vim.api.nvim_create_autocmd('LspAttach', {

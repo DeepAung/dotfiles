@@ -17,7 +17,6 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = { signs = true },
   },
-  -- TODO: comment .templ file
   {
     'numToStr/Comment.nvim',
     dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
@@ -50,6 +49,21 @@ return {
       vim.keymap.set('n', '<leader>cpd', ':CompetiTest delete_testcase<CR>')
       vim.keymap.set('n', '<leader>cpr', ':CompetiTest run<CR>')
       vim.keymap.set('n', '<leader>cpx', ':CompetiTest run_no_compile<CR>')
+    end,
+  },
+  {
+    'echasnovski/mini.nvim',
+    config = function()
+      require('mini.ai').setup { n_lines = 500 }
+      require('mini.surround').setup()
+
+      local statusline = require 'mini.statusline'
+      statusline.setup { use_icons = vim.g.have_nerd_font }
+
+      ---@diagnostic disable-next-line: duplicate-set-field
+      statusline.section_location = function()
+        return '%2l:%-2v'
+      end
     end,
   },
 }
