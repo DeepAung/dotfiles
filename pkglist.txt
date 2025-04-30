@@ -23,6 +23,7 @@ fastfetch
 fd
 feh
 firefox
+foremost
 fzf
 git
 github-cli
@@ -32,6 +33,7 @@ google-cloud-cli
 grub
 gst-plugin-pipewire
 gwenview
+helm
 htop
 hypridle
 hyprland
@@ -46,6 +48,7 @@ jq
 kate
 kitty
 konsole
+kubectx
 lazygit
 libpulse
 linux
@@ -54,6 +57,7 @@ linux-headers
 lolcat
 man-db
 miniconda3
+minikube
 mpv
 nano
 neovim
@@ -75,10 +79,12 @@ pipewire-jack
 pipewire-pulse
 plasma-meta
 plasma-workspace
+postman-bin
 rustup
 smartmontools
 sof-firmware
 spotify
+sqlc
 stow
 swaync
 tldr
