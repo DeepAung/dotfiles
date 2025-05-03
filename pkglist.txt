@@ -16,6 +16,7 @@ dbeaver
 discord
 dkms
 docker
+docker-compose
 dolphin
 eclipse-java-bin
 efibootmgr

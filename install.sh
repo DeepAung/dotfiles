@@ -20,7 +20,7 @@ echo "installing packages in yay"
 yay -S --needed - < aurpkglist.txt
 
 echo "linking dotfiles"
-cd ~/.dotfiles && stow -t ~ */
+cd ~/.dotfiles && stow -t ~ bash common hypr kitty nvim tmux tmuxifier waybar wofi yazi zsh
 
 echo "enable and start services (NetworkManager, bluetooth, ssdm, docker)"
 sudo systemctl enable --now NetworkManager.service
@@ -45,3 +45,6 @@ go install github.com/pressly/goose/v3/cmd/goose@latest # goose
 
 echo "install duckdb"
 curl https://install.duckdb.org | sh
+
+echo "install tilt"
+curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/install.sh | bash
