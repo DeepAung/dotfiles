@@ -13,6 +13,8 @@ return {
     { 'folke/neodev.nvim',      opts = {} },
 
     { 'mfussenegger/nvim-jdtls' },
+
+    { 'towolf/vim-helm' },
   },
   config = function()
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -54,29 +56,29 @@ return {
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
     local servers = {
+      sqlls = {},
+      pyright = {},
+      cssls = {},
+      tailwindcss = {},
+      templ = {},
+      volar = {},
+      ts_ls = {},
+      rust_analyzer = {},
+      buf = {},
+      graphql = {},
       clangd = {
         cmd = { 'clangd', '--offset-encoding=utf-16' },
         filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
       },
-      sqlls = {},
-      pyright = {},
       emmet_ls = {
         filetypes = { 'html', 'templ' },
       },
-
       html = {
         filetypes = { 'html', 'templ' },
       },
       htmx = {
         filetypes = { 'html', 'templ' },
       },
-      cssls = {},
-
-      tailwindcss = {},
-      templ = {},
-      volar = {},
-      ts_ls = {},
-
       lua_ls = {
         settings = {
           Lua = {
@@ -86,7 +88,6 @@ return {
           },
         },
       },
-
       gopls = {
         cmd = { 'gopls' },
         filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
@@ -101,10 +102,6 @@ return {
           },
         },
       },
-
-      rust_analyzer = {},
-      buf = {},
-      graphql = {},
     }
 
     -- Ensure the servers and tools above are installed
