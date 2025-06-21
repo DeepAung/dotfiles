@@ -112,6 +112,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+eval "$(fzf --bash)"
+eval "$(zoxide init bash)"
 
 source ~/.commonrc.sh

@@ -16,6 +16,7 @@ alias hypr-change-wallpaper='hyprctl hyprpaper reload ,$(find ~/.dotfiles/wallpa
 alias kde-change-wallpaper='bash /home/deepaung/.dotfiles/common/kde-change-wallpaper.sh'
 alias v='nvim'
 alias lg='lazygit'
+alias cd='z'
 
 function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
