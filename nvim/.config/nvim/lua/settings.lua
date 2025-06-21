@@ -35,6 +35,9 @@ vim.filetype.add {
     ['%.env%.[%w_.-]+'] = 'sh',
     ['.*/hypr/.*%.conf'] = 'hyprlang',
   },
+  filename = {
+    ['Tiltfile'] = 'starlark',
+  },
 }
 
 -- [[ Basic Keymaps ]]
@@ -73,6 +76,9 @@ vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Move focus to the upper window'
 vim.keymap.set('n', '<leader><leader>x', ':source %<cr>', { desc = 'source file' })
 vim.keymap.set('n', '<leader>x', ':.lua<cr>', { desc = 'source line' })
 vim.keymap.set('v', '<leader>x', ':lua<cr>', { desc = 'source selected' })
+
+vim.keymap.set('n', '<C-p>', ':cprev<CR>', { desc = 'cprev' })
+vim.keymap.set('n', '<C-n>', ':cnext<CR>', { desc = 'cnext' })
 
 -- [[ Basic Autocommands ]]
 

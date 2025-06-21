@@ -63,6 +63,7 @@ return {
       templ = {},
       volar = {},
       ts_ls = {},
+      svelte = {},
       rust_analyzer = {},
       buf = {},
       graphql = {},
