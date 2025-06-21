@@ -3,7 +3,7 @@ export BROWSER=zen-browser
 export GBM_BACKEND=nvidia-drm
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
 
-export PATH="$HOME/.tmuxifier/bin:$PATH"
+export PATH="$HOME/.tmux/plugins/tmuxifier/bin:$PATH"
 export PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
 export PATH="$PATH:$HOME/.duckdb/cli/latest"
 eval "$(tmuxifier init -)"
