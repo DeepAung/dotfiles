@@ -4,7 +4,7 @@ cbonsai
 cbonsai-debug
 eclipse-java-bin
 google-cloud-cli
-hyprshot
+jdtls
 miniconda3
 postman-bin
 spotify

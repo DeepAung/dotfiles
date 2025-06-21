@@ -28,6 +28,7 @@ sudo systemctl enable --now bluetooth.service
 sudo systemctl enable --now ssdm.service
 sudo systemctl enable --now docker.service
 sudo systemctl enable --now containerd.service
+sudo systemctl disable --now postgresql.service
 
 echo "create docker group and add it to current user"
 sudo groupadd docker

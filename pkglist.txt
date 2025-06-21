@@ -18,6 +18,7 @@ dkms
 docker
 docker-compose
 dolphin
+dosfstools
 eclipse-java-bin
 efibootmgr
 fastfetch
@@ -31,6 +32,7 @@ github-cli
 godot
 godot-mono
 google-cloud-cli
+gparted
 grub
 gst-plugin-pipewire
 gwenview
@@ -45,6 +47,7 @@ iftop
 imagemagick
 intel-ucode
 iwd
+jdtls
 jq
 kate
 kitty
@@ -80,6 +83,7 @@ pipewire-jack
 pipewire-pulse
 plasma-meta
 plasma-workspace
+postgresql
 postman-bin
 rustup
 smartmontools
@@ -107,7 +111,6 @@ xdg-utils
 xorg-xinit
 xwayland-satellite
 yay
-yay-debug
 yazi
 zed
 zen-browser-bin
