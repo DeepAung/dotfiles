@@ -17,6 +17,7 @@ alias kde-change-wallpaper='bash /home/deepaung/.dotfiles/common/kde-change-wall
 alias v='nvim'
 alias lg='lazygit'
 alias cd='z'
+alias k='kubectl'
 
 function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd

@@ -114,5 +114,6 @@ fi
 
 eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
+source <(kubectl completion bash)
 
 source ~/.commonrc.sh
