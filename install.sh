@@ -19,6 +19,9 @@ sudo pacman -S --needed - < pkglist.txt
 echo "installing packages in yay"
 yay -S --needed - < aurpkglist.txt
 
+echo "installing tmux tpm"
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 echo "linking dotfiles"
 cd ~/.dotfiles && stow -t ~ bash common hypr kitty nvim tmux tmuxifier waybar wofi yazi zsh
 
