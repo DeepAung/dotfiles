@@ -1,9 +1,9 @@
 local M = {}
 
-M.ignore_format_on_save = function(filetype)
-  local list = { cpp = true, c = true }
+M.ignore_format_on_save_list = { cpp = true, c = true }
 
-  return list[filetype] ~= nil
+M.ignore_format_on_save = function(filetype)
+  return M.ignore_format_on_save_list[filetype] ~= nil
 end
 
 M.custom_format = function()

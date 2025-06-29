@@ -27,7 +27,7 @@ return {
 
       local api = require 'Comment.api'
       local toggleNormal = api.toggle.linewise.current
-      local toggleVisual = "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>"
+      local toggleVisual = "<ESC>:lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>"
 
       vim.keymap.set('n', '<leader>/', toggleNormal, { desc = 'Toggle comment' })
       vim.keymap.set('v', '<leader>/', toggleVisual, { desc = 'Toggle comment' })
