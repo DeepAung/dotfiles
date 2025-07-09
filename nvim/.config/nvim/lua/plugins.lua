@@ -70,4 +70,13 @@ return {
     'nvim-pack/nvim-spectre',
     dependencies = { 'nvim-lua/plenary.nvim' },
   },
+  {
+    'saecki/crates.nvim',
+    tag = 'stable',
+    config = function()
+      require('crates').setup {
+        completion = { cmp = { enabled = true } },
+      }
+    end,
+  },
 }
