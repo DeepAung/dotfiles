@@ -25,11 +25,18 @@ zinit snippet OMZT::gallois
 # Load completions
 autoload -Uz compinit && compinit
 zinit cdreplay -q
+autoload -U history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
 
 # Key bindings
 bindkey -e
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
+bindkey '^p' history-beginning-search-backward-end
+bindkey '^n' history-beginning-search-forward-end
+bindkey '^[[A' history-beginning-search-backward-end
+bindkey '^[[B' history-beginning-search-forward-end
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
 
 # History
 HISTSIZE=10000
