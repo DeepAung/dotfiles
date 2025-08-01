@@ -17,7 +17,25 @@ alias lg='lazygit'
 alias k='kubectl'
 alias actconda='source /opt/miniconda3/etc/profile.d/conda.sh'
 alias hypr-change-wallpaper='hyprctl hyprpaper reload ,$(find ~/.dotfiles/wallpapers -type f | fzf)'
-alias kde-change-wallpaper='bash ~/.dotfiles/common/kde-change-wallpaper.sh'
+
+function kde-change-wallpaper() {
+  selected_wallpaper=$(find ~/.dotfiles/wallpapers -type f | fzf)
+  if [[ -z "$selected_wallpaper" ]]; then
+    echo "No wallpaper selected. Aborting."
+    return 1
+  fi
+
+  dbus-send --session --dest=org.kde.plasmashell \
+    --type=method_call /PlasmaShell org.kde.PlasmaShell.evaluateScript \
+    "string:
+  var Desktops = desktops();
+  for (i = 0; i < Desktops.length; i++) {
+      d = Desktops[i];
+      d.wallpaperPlugin = \"org.kde.image\";
+      d.currentConfigGroup = Array(\"Wallpaper\", \"org.kde.image\", \"General\");
+      d.writeConfig(\"Image\", \"${selected_wallpaper}\");
+  }"
+}
 
 function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -42,7 +60,7 @@ function git-switch-account() {
   echo "✅ git account switched to $profile"
 }
 
-funciont generate-ssh-config() {
+function generate-ssh-config() {
   set -euo pipefail
 
   local json=~/.ssh/accounts.json
@@ -90,7 +108,10 @@ funciont generate-ssh-config() {
 # ]
 # ------------------------------------------------------------------------------
 
-# rainbow cowsay say random thing
-cowsay_array=($(find /usr/share/cowsay/cows -type f))
-selected_cowsay=${cowsay_array[ $RANDOM % ${#cowsay_array[@]} ]}
-fortune | cowsay -f $selected_cowsay | lolcat
+function cowsay_random_thing() {
+  cowsay_array=($(find /usr/share/cowsay/cows -type f))
+  selected_cowsay=${cowsay_array[ $RANDOM % ${#cowsay_array[@]} ]}
+  fortune | cowsay -f $selected_cowsay | lolcat
+}
+
+fastfetch --colors-block-range-start 9 --colors-block-width 3 --config arch
