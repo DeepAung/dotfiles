@@ -14,7 +14,7 @@ echo "installing yay"
 sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
 
 echo "installing packages in pacman"
-sudo pacman -S --needed - < pkglist.txt
+sudo pacman -S --needed - < corepkglist.txt
 
 echo "installing packages in yay"
 yay -S --needed - < aurpkglist.txt
@@ -44,11 +44,11 @@ go install github.com/go-jet/jet/v2/cmd/jet@latest # jet
 go install github.com/a-h/templ/cmd/templ@latest # templ
 go install google.golang.org/protobuf/cmd/protoc-gen-go@latest # grpc
 go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
-go install -tags 'postgres sqlite sqlite3' github.com/golang-migrate/migrate/v4/cmd/migrate@latest # migrate
+# go install -tags 'postgres sqlite sqlite3' github.com/golang-migrate/migrate/v4/cmd/migrate@latest # migrate
 go install github.com/pressly/goose/v3/cmd/goose@latest # goose
 
-echo "install duckdb"
-curl https://install.duckdb.org | sh
+# echo "install duckdb"
+# curl https://install.duckdb.org | sh
 
 echo "install tilt"
 curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/install.sh | bash

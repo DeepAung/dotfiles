@@ -1,15 +1,11 @@
 betterdiscord-installer
-betterdiscord-installer-debug
+bruno-bin
 cbonsai
-cbonsai-debug
-eclipse-java-bin
+figma-linux-bin
 google-cloud-cli
-jdtls
 miniconda3
 postman-bin
 spotify
 visual-studio-code-bin
-visual-studio-code-bin-debug
 yay
-yay-debug
 zen-browser-bin
