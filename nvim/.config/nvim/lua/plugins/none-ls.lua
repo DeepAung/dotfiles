@@ -10,14 +10,14 @@ return {
 
         null_ls.builtins.formatting.prettier,
 
-        null_ls.builtins.formatting.clang_format.with {
-          disabled_filetypes = { 'java' },
-        },
-        null_ls.builtins.formatting.google_java_format,
+        null_ls.builtins.formatting.clang_format,
 
         null_ls.builtins.formatting.gofumpt,
         null_ls.builtins.formatting.goimports,
-        null_ls.builtins.formatting.golines,
+        -- null_ls.builtins.formatting.golines,
+        null_ls.builtins.formatting.golines.with {
+          extra_args = { '--max-len=200' },
+        },
 
         null_ls.builtins.formatting.black,
       },

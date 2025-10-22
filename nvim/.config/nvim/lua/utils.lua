@@ -1,6 +1,7 @@
 local M = {}
 
-M.ignore_format_on_save_list = { cpp = true, c = true }
+-- M.ignore_format_on_save_list = { cpp = true, c = true }
+M.ignore_format_on_save_list = {}
 
 M.ignore_format_on_save = function(filetype)
   return M.ignore_format_on_save_list[filetype] ~= nil

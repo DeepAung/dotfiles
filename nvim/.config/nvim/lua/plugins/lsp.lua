@@ -56,6 +56,8 @@ return {
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
     local servers = {
+      -- docker_language_server = {},
+      dockerls = {},
       sqlls = {},
       pyright = {},
       cssls = {},
@@ -63,6 +65,7 @@ return {
       templ = {},
       volar = {},
       ts_ls = {},
+      eslint = {},
       svelte = {},
       rust_analyzer = {},
       buf = {},
