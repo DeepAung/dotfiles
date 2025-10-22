@@ -5,6 +5,7 @@ export BROWSER=zen-browser
 export PATH="$HOME/.tmux/plugins/tmuxifier/bin:$PATH"
 export PATH="$PATH:${$(go env GOBIN):-$(go env GOPATH)/bin}"
 export PATH="$PATH:$HOME/.duckdb/cli/latest"
+export PATH="$PATH:$HOME/.cargo/bin"
 eval "$(tmuxifier init -)"
 
 source /usr/share/nvm/init-nvm.sh
@@ -114,4 +115,4 @@ function cowsay_random_thing() {
   fortune | cowsay -f $selected_cowsay | lolcat
 }
 
-fastfetch --colors-block-range-start 9 --colors-block-width 3 --config arch
+fastfetch --config arch
