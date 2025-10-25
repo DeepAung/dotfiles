@@ -63,7 +63,7 @@ return {
       cssls = {},
       tailwindcss = {},
       templ = {},
-      volar = {},
+      -- volar = {},
       ts_ls = {},
       eslint = {},
       svelte = {},
