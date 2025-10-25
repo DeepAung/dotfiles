@@ -1,6 +1,7 @@
 export EDITOR=nvim
 export VISUAL=nvim
 export BROWSER=zen-browser
+export TMUXIFIER_LAYOUT_PATH="$HOME/.dotfiles/tmuxifier/layouts/"
 
 export PATH="$HOME/.tmux/plugins/tmuxifier/bin:$PATH"
 export PATH="$PATH:${$(go env GOBIN):-$(go env GOPATH)/bin}"
