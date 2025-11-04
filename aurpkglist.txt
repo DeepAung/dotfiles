@@ -3,7 +3,6 @@ bruno-bin
 cbonsai
 figma-linux-bin
 google-cloud-cli
-miniconda3
 postman-bin
 spotify
 visual-studio-code-bin

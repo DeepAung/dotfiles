@@ -17,7 +17,6 @@ alias tmux='tmux -u'
 alias v='nvim'
 alias lg='lazygit'
 alias k='kubectl'
-alias actconda='source /opt/miniconda3/etc/profile.d/conda.sh'
 alias hypr-change-wallpaper='hyprctl hyprpaper reload ,$(find ~/.dotfiles/wallpapers -type f | fzf)'
 
 function kde-change-wallpaper() {
