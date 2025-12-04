@@ -1,7 +1,7 @@
 return {
   'nvim-tree/nvim-tree.lua',
   config = function()
-    require('nvim-tree').setup {
+    require('nvim-tree').setup({
       git = {
         enable = true,
         ignore = false,
@@ -15,9 +15,9 @@ return {
           },
         },
       },
-    }
+    })
 
-    local api = require 'nvim-tree.api'
+    local api = require('nvim-tree.api')
     local map = function(keys, func, desc)
       vim.keymap.set('n', keys, func, { desc = 'nvim-tree: ' .. desc })
     end

@@ -2,19 +2,14 @@ return {
   'neovim/nvim-lspconfig',
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
-    'williamboman/mason.nvim',
+    { 'mason-org/mason.nvim', opts = {} },
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
 
     -- Useful status updates for LSP.
     { 'j-hui/fidget.nvim', opts = {} },
 
-    -- used for completion, annotations and signatures of Neovim apis
-    { 'folke/neodev.nvim', opts = {} },
-
-    { 'mfussenegger/nvim-jdtls' },
-
-    { 'towolf/vim-helm' },
+    { 'saghen/blink.cmp' },
   },
   config = function()
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -52,18 +47,14 @@ return {
       end,
     })
 
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+    local capabilities = require('blink.cmp').get_lsp_capabilities()
 
     local servers = {
-      -- docker_language_server = {},
       dockerls = {},
-      sqlls = {},
       pyright = {},
       cssls = {},
       tailwindcss = {},
       templ = {},
-      -- volar = {},
       ts_ls = {},
       eslint = {},
       svelte = {},
@@ -89,6 +80,9 @@ return {
             completion = {
               callSnippet = 'Replace',
             },
+            diagnostics = {
+              globals = { 'vim' },
+            },
           },
         },
       },
@@ -108,9 +102,6 @@ return {
       },
     }
 
-    -- Ensure the servers and tools above are installed
-    require('mason').setup()
-
     -- You can add other tools here that you want Mason to install
     -- for you, so that they are available from within Neovim.
     local ensure_installed = vim.tbl_keys(servers or {})
@@ -124,43 +115,24 @@ return {
       'black',
     })
 
-    require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+    require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
 
     ---@diagnostic disable-next-line: missing-fields
-    require('mason-lspconfig').setup {
+    require('mason-lspconfig').setup({
+      ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
+      automatic_installation = false,
       handlers = {
         function(server_name)
           local server = servers[server_name] or {}
-
-          local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
-          local function on_attach(client, bufnr)
-            local utils = require 'utils'
-            vim.keymap.set('n', '<leader>lf', utils.custom_format, { desc = 'format current file' })
-
-            if utils.ignore_format_on_save(vim.bo.filetype) then
-              return
-            end
-            if not client.supports_method 'textDocument/formatting' then
-              return
-            end
-
-            vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
-            vim.api.nvim_create_autocmd('BufWritePre', {
-              group = augroup,
-              buffer = bufnr,
-              callback = utils.custom_format,
-            })
-          end
 
           -- This handles overriding only values explicitly passed
           -- by the server configuration above. Useful when disabling
           -- certain features of an LSP (for example, turning off formatting for tsserver)
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          server.on_attach = on_attach
 
           require('lspconfig')[server_name].setup(server)
         end,
       },
-    }
+    })
   end,
 }

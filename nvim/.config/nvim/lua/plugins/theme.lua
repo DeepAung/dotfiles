@@ -3,7 +3,7 @@ return {
   name = 'catppuccin',
   priority = 1000,
   config = function()
-    require('catppuccin').setup {
+    require('catppuccin').setup({
       integrations = {
         cmp = true,
         gitsigns = true,
@@ -14,8 +14,8 @@ return {
           indentscope_color = '',
         },
       },
-    }
+    })
 
-    vim.cmd.colorscheme 'catppuccin-mocha'
+    vim.cmd.colorscheme('catppuccin-mocha')
   end,
 }

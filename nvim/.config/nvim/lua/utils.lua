@@ -19,14 +19,14 @@ M.custom_format = function()
       on_exit = function()
         -- Reload the buffer only if it's still the current buffer
         if vim.api.nvim_get_current_buf() == bufnr then
-          vim.cmd 'e!'
+          vim.cmd('e!')
         end
       end,
     })
     return
   end
 
-  vim.lsp.buf.format { async = false }
+  vim.lsp.buf.format({ async = false })
 end
 
 return M

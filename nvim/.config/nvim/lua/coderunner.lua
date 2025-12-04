@@ -26,7 +26,7 @@ local function build_command()
   end
 
   if data.build == nil then
-    print "error: lang didn't have a build command"
+    print("error: lang didn't have a build command")
     return
   end
 
@@ -41,7 +41,7 @@ local function exec_command()
   end
 
   if data.exec == nil then
-    print "error: lang didn't have a exec command"
+    print("error: lang didn't have a exec command")
     return
   end
 

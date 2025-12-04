@@ -1,53 +1,9 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
-vim.g.have_nerd_font = true
-
--- [[ Setting options ]]
---  For more options, you can see `:help option-list`
-
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.mouse = 'a'
-vim.opt.showmode = false
-vim.opt.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim.
-vim.opt.breakindent = true
-vim.opt.undofile = true
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.signcolumn = 'yes'
-vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-vim.opt.inccommand = 'split'
-vim.opt.cursorline = true
-vim.opt.scrolloff = 10
-
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-
-vim.filetype.add {
-  extension = { templ = 'templ' },
-  pattern = {
-    ['%.env%.[%w_.-]+'] = 'sh',
-    ['.*/hypr/.*%.conf'] = 'hyprlang',
-  },
-  filename = {
-    ['Tiltfile'] = 'starlark',
-  },
-}
-
--- [[ Basic Keymaps ]]
-
-vim.keymap.set({ 'n', 'v' }, 'H', '^')
-vim.keymap.set({ 'n', 'v' }, 'L', '$')
-
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', ':nohlsearch<CR>')
+
+vim.keymap.set({ 'n', 'v' }, 'H', '^')
+vim.keymap.set({ 'n', 'v' }, 'L', '$')
 
 vim.keymap.set('n', '<A-h>', ':vertical resize +5<CR>')
 vim.keymap.set('n', '<A-j>', ':resize -5<CR>')
@@ -58,10 +14,10 @@ vim.keymap.set('n', '<leader><Tab>', ':tabnext<CR>', { desc = 'Go to next tab' }
 vim.keymap.set('n', '<leader><S-Tab>', ':tabprevious<CR>', { desc = 'Go to previous tab' })
 
 vim.keymap.set('n', '[d', function()
-  vim.diagnostic.jump { count = -1, float = true }
+  vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', function()
-  vim.diagnostic.jump { count = 1, float = true }
+  vim.diagnostic.jump({ count = 1, float = true })
 end, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>E', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 
@@ -78,14 +34,3 @@ vim.keymap.set('v', '<leader>x', ':lua<cr>', { desc = 'source selected' })
 
 vim.keymap.set('n', '<C-p>', ':cprev<CR>', { desc = 'cprev' })
 vim.keymap.set('n', '<C-n>', ':cnext<CR>', { desc = 'cnext' })
-
--- [[ Basic Autocommands ]]
-
--- Highlight when yanking (copying) text
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
