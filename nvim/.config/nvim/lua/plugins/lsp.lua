@@ -55,7 +55,7 @@ return {
       cssls = {},
       tailwindcss = {},
       templ = {},
-      ts_ls = {},
+      vtsls = {},
       eslint = {},
       svelte = {},
       rust_analyzer = {},
@@ -69,9 +69,6 @@ return {
         filetypes = { 'html', 'templ' },
       },
       html = {
-        filetypes = { 'html', 'templ' },
-      },
-      htmx = {
         filetypes = { 'html', 'templ' },
       },
       lua_ls = {
