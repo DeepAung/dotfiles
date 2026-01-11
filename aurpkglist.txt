@@ -1,8 +1,8 @@
 betterdiscord-installer
-bruno-bin
 cbonsai
 figma-linux-bin
 google-cloud-cli
+opencode-bin
 postman-bin
 spotify
 visual-studio-code-bin
