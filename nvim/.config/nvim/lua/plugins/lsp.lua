@@ -97,6 +97,14 @@ return {
           },
         },
       },
+      verible = {
+        cmd = {
+          'verible-verilog-ls',
+          '--rules=-always-comb,-unpacked-dimensions-range-ordering,-explicit-parameter-storage-type',
+          '--file_list_path=verible.filelist',
+          '--indentation_spaces=4',
+        },
+      },
     }
 
     -- You can add other tools here that you want Mason to install
