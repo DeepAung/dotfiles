@@ -9,7 +9,14 @@ export PATH="$PATH:$HOME/.duckdb/cli/latest"
 export PATH="$PATH:$HOME/.cargo/bin"
 eval "$(tmuxifier init -)"
 
+# init nvm
 source /usr/share/nvm/init-nvm.sh
+
+# enable conda
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+
+# init vivado
+source /opt/Xilinx/2025.2/Vivado/settings64.sh
 
 alias ls='ls --color=auto'
 alias l='ls -lah'
@@ -18,6 +25,8 @@ alias v='nvim'
 alias lg='lazygit'
 alias k='kubectl'
 alias hypr-change-wallpaper='hyprctl hyprpaper reload ,$(find ~/.dotfiles/wallpapers -type f | fzf)'
+alias fs='sudo du -h --max-depth=1 | sort -hr'
+alias fsh='fs | head -n 10'
 
 function kde-change-wallpaper() {
   selected_wallpaper=$(find ~/.dotfiles/wallpapers -type f | fzf)
