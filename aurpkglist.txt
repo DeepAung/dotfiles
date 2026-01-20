@@ -2,9 +2,12 @@ betterdiscord-installer
 cbonsai
 figma-linux-bin
 google-cloud-cli
+miniconda3
+ncurses5-compat-libs
 opencode-bin
 postman-bin
 spotify
 visual-studio-code-bin
 yay
 zen-browser-bin
+zoom
