@@ -1,57 +1,94 @@
 local lang_maps = {
-  cpp = { build = 'g++ % -o %:r', exec = './%:r' },
-  c = { build = 'g++ % -o %:r', exec = './%:r' },
-  python = { exec = 'python3 %' },
-  sh = { exec = './%' },
-  go = { build = 'go build', exec = 'go run %' },
+  cpp = { build = 'g++ "$FILE" -o "$FILE_BASE"', exec = './"$FILE_BASE"' },
+  c = { build = 'gcc "$FILE" -o "$FILE_BASE"', exec = './"$FILE_BASE"' },
+  python = { exec = 'python3 "$FILE"' },
+  lua = { exec = 'lua "$FILE"' },
+  sh = { exec = 'bash "$FILE"' },
+  go = { build = 'go build -o "$FILE_BASE" "$FILE"', exec = './"$FILE_BASE"' },
   rust = { exec = 'cargo run' },
-  javascript = { exec = 'node %' },
-  typescript = { exec = 'node %' },
+  javascript = { exec = 'node "$FILE"' },
+  typescript = { exec = 'ts-node "$FILE"' },
 }
+
+local function get_vars()
+  local file = vim.fn.expand('%')
+  local file_base = vim.fn.expand('%:r')
+  return file, file_base
+end
 
 local function get_lang_data()
   local lang = lang_maps[vim.bo.filetype]
   if lang == nil then
-    print('error: lang for filetype ' .. vim.bo.filetype .. ' not found')
+    vim.notify('CodeRunner: Language "' .. vim.bo.filetype .. '" not supported', vim.log.levels.WARN)
     return nil
   end
-
   return lang
 end
 
-local function build_command()
+-- Helper to substitute variables in the command string
+local function prepare_cmd(cmd_template)
+  local file, file_base = get_vars()
+  -- Escape paths to handle spaces safely
+  local cmd = cmd_template:gsub('%$FILE_BASE', file_base):gsub('%$FILE', file)
+  return cmd
+end
+
+local function run_code(mode)
+  vim.cmd('write') -- Auto-save before running
+
   local data = get_lang_data()
   if data == nil then
     return
   end
 
-  if data.build == nil then
-    print("error: lang didn't have a build command")
-    return
-  end
+  local cmd = ''
 
-  local key = vim.api.nvim_replace_termcodes(':!' .. data.build .. '<CR>', true, false, true)
-  vim.api.nvim_feedkeys(key, 'n', false)
+  -- 1. Build Only
+  if mode == 'build' then
+    if data.build == nil then
+      vim.notify('CodeRunner: No build command for ' .. vim.bo.filetype, vim.log.levels.WARN)
+      return
+    end
+    cmd = prepare_cmd(data.build)
+    -- Run build in standard command line (blocking, so we see errors immediately)
+    vim.cmd('!' .. cmd)
+
+  -- 2. Exec Only
+  elseif mode == 'exec' then
+    if data.exec == nil then
+      vim.notify('CodeRunner: No exec command for ' .. vim.bo.filetype, vim.log.levels.WARN)
+      return
+    end
+    cmd = prepare_cmd(data.exec)
+    -- Open split and run term
+    vim.cmd('split | terminal ' .. cmd)
+    vim.cmd('startinsert')
+
+  -- 3. Run (Build + Exec)
+  elseif mode == 'run' then
+    local exec_cmd = prepare_cmd(data.exec)
+
+    -- If there is a build command, chain it: build && exec
+    if data.build then
+      local build_cmd = prepare_cmd(data.build)
+      cmd = build_cmd .. ' && ' .. exec_cmd
+    else
+      cmd = exec_cmd
+    end
+
+    -- Open split and run the combined chain
+    vim.cmd('split | terminal ' .. cmd)
+    vim.cmd('startinsert')
+  end
 end
 
-local function exec_command()
-  local data = get_lang_data()
-  if data == nil then
-    return
-  end
-
-  if data.exec == nil then
-    print("error: lang didn't have a exec command")
-    return
-  end
-
-  local key = vim.api.nvim_replace_termcodes(':split<CR>:terminal ' .. data.exec .. '<CR>' .. 'i', true, false, true)
-  vim.api.nvim_feedkeys(key, 'n', false)
-end
-
-vim.keymap.set('n', '<leader>cb', build_command, { desc = '[B]uild command' })
-vim.keymap.set('n', '<leader>ce', exec_command, { desc = '[E]xec command' })
+-- Keymaps
+vim.keymap.set('n', '<leader>cb', function()
+  run_code('build')
+end, { desc = '[C]ode [B]uild' })
+vim.keymap.set('n', '<leader>ce', function()
+  run_code('exec')
+end, { desc = '[C]ode [E]xec' })
 vim.keymap.set('n', '<leader>cr', function()
-  build_command()
-  exec_command()
-end, { desc = '[R]un command ([B]uild and [E]xec)' })
+  run_code('run')
+end, { desc = '[C]ode [R]un (Build & Exec)' })

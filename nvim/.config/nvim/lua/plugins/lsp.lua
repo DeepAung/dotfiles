@@ -105,6 +105,7 @@ return {
           '--indentation_spaces=4',
         },
       },
+      postgres_lsp = {},
     }
 
     -- You can add other tools here that you want Mason to install

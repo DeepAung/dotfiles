@@ -20,3 +20,6 @@ keybind = ctrl+alt+h=goto_split:left
 keybind = ctrl+alt+j=goto_split:down
 keybind = ctrl+alt+k=goto_split:up
 keybind = ctrl+alt+l=goto_split:right
+
+keybind = ctrl+shift+up=scroll_page_up
+keybind = ctrl+shift+down=scroll_page_down

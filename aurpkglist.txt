@@ -1,7 +1,7 @@
+antigravity
 betterdiscord-installer
 cbonsai
 figma-linux-bin
-google-cloud-cli
 miniconda3
 ncurses5-compat-libs
 opencode-bin

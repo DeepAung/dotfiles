@@ -2,11 +2,15 @@ export EDITOR=nvim
 export VISUAL=nvim
 export BROWSER=zen-browser
 export TMUXIFIER_LAYOUT_PATH="$HOME/.dotfiles/tmuxifier/layouts/"
+export ANDROID_HOME=$HOME/Android/Sdk
 
 export PATH="$HOME/.tmux/plugins/tmuxifier/bin:$PATH"
 export PATH="$PATH:${$(go env GOBIN):-$(go env GOPATH)/bin}"
 export PATH="$PATH:$HOME/.duckdb/cli/latest"
 export PATH="$PATH:$HOME/.cargo/bin"
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH="/home/deepaung/.local/bin:$PATH"
 eval "$(tmuxifier init -)"
 
 # init nvm

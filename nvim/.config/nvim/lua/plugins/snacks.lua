@@ -20,6 +20,7 @@ return {
         -- wo = { wrap = true } -- Wrap notifications
       },
     },
+    image = {},
   },
   keys = {
     {
