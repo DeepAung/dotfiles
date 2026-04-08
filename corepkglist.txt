@@ -98,7 +98,6 @@ rustup
 screen
 smartmontools
 sof-firmware
-sqlc
 steam
 stow
 syncthing
@@ -112,7 +111,6 @@ ttf-jetbrains-mono-nerd
 typst
 unzip
 uv
-vegeta
 vim
 vlc
 vulkan-intel
@@ -130,5 +128,4 @@ yazi
 zed
 zip
 zoxide
-zram-generator
 zsh
