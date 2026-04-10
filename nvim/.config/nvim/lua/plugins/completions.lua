@@ -1,9 +1,10 @@
 return {
   'saghen/blink.cmp',
-  dependencies = { 'rafamadriz/friendly-snippets' },
-
+  event = 'VimEnter',
   version = '1.*',
-
+  dependencies = { 'rafamadriz/friendly-snippets' },
+  ---@module 'blink'
+  ---@type blink.cmp.Config
   opts = {
     keymap = { preset = 'enter' },
 
@@ -11,15 +12,12 @@ return {
       nerd_font_variant = 'normal',
     },
 
-    completion = { documentation = { auto_show = true } },
+    completion = {
+      documentation = { auto_show = false, auto_show_delay_ms = 500 },
+    },
 
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
-      providers = {
-        snippets = {
-          opts = { friendly_snippets = true },
-        },
-      },
     },
 
     signature = { enabled = true },

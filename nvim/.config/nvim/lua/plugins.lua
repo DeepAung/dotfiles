@@ -1,12 +1,5 @@
 return {
-  'tpope/vim-sleuth',
-  -- Detect tabstop and shiftwidth automatically
-  {
-    'windwp/nvim-autopairs',
-    config = function()
-      require('nvim-autopairs').setup({})
-    end,
-  },
+  { 'NMAC427/guess-indent.nvim', opts = {} },
   {
     'folke/todo-comments.nvim',
     event = 'VimEnter',
@@ -17,6 +10,7 @@ return {
     'numToStr/Comment.nvim',
     dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
     config = function()
+      ---@diagnostic disable-next-line: missing-fields
       require('Comment').setup({
         pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
       })
@@ -35,10 +29,12 @@ return {
     config = function()
       require('mini.ai').setup({ n_lines = 500 })
       require('mini.surround').setup()
+      require('mini.pairs').setup()
 
       local statusline = require('mini.statusline')
       statusline.setup({ use_icons = vim.g.have_nerd_font })
 
+      ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function()
         return '%2l:%-2v'
       end
@@ -59,25 +55,6 @@ return {
           completion = true,
           hover = true,
         },
-      })
-    end,
-  },
-  {
-    'kevinhwang91/nvim-ufo',
-    dependencies = { 'kevinhwang91/promise-async' },
-    config = function()
-      vim.o.foldcolumn = '1'
-      vim.o.foldlevel = 99
-      vim.o.foldlevelstart = 99
-      vim.o.foldenable = true
-
-      vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-      vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
-
-      require('ufo').setup({
-        provider_selector = function(bufnr, filetype, buftype)
-          return { 'treesitter', 'indent' }
-        end,
       })
     end,
   },

@@ -2,30 +2,20 @@ return {
   'nvim-tree/nvim-tree.lua',
   config = function()
     require('nvim-tree').setup({
-      git = {
-        enable = true,
-        ignore = false,
+      filters = {
+        git_ignored = false,
       },
-
       renderer = {
-        highlight_git = true,
-        icons = {
-          show = {
-            git = true,
-          },
-        },
+        highlight_git = 'name',
       },
+      on_attach = function(bufnr)
+        local api = require('nvim-tree.api')
+        api.map.on_attach.default(bufnr)
+
+        vim.keymap.set('n', '?', api.tree.toggle_help, { desc = 'nvim-tree: Help', buffer = bufnr, noremap = true, silent = true, nowait = true })
+      end,
     })
 
-    local api = require('nvim-tree.api')
-    local map = function(keys, func, desc)
-      vim.keymap.set('n', keys, func, { desc = 'nvim-tree: ' .. desc })
-    end
-
-    map('<leader>e', function()
-      api.tree.reload()
-      api.tree.toggle()
-    end, 'Toggle')
-    map('?', api.tree.toggle_help, 'Help')
+    vim.keymap.set('n', '<leader>e', require('nvim-tree.api').tree.toggle, { desc = 'nvim-tree: Toggle' })
   end,
 }

@@ -1,7 +1,7 @@
 return {
   'nvim-telescope/telescope.nvim',
+  enabled = true,
   event = 'VimEnter',
-  branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
     {
@@ -11,12 +11,11 @@ return {
         return vim.fn.executable('make') == 1
       end,
     },
-    'nvim-telescope/telescope-ui-select.nvim',
+    { 'nvim-telescope/telescope-ui-select.nvim' },
+
     { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
   },
   config = function()
-    -- [[ Configure Telescope ]]
-    -- See `:help telescope` and `:help telescope.setup()`
     local actions = require('telescope.actions')
     require('telescope').setup({
       defaults = {
@@ -25,11 +24,9 @@ return {
           n = { ['<C-q>'] = actions.smart_send_to_qflist + actions.open_qflist },
         },
       },
-      picker = {},
+      pickers = {},
       extensions = {
-        ['ui-select'] = {
-          require('telescope.themes').get_dropdown(),
-        },
+        ['ui-select'] = { require('telescope.themes').get_dropdown() },
       },
     })
 
@@ -37,33 +34,26 @@ return {
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
 
-    -- See `:help telescope.builtin`
     local builtin = require('telescope.builtin')
+    vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
+    vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
     vim.keymap.set('n', '<leader>sf', function()
       builtin.find_files({ hidden = true })
     end, { desc = '[S]earch [F]iles' })
-    vim.keymap.set('n', '<leader>sg', require('multigrep').live_multigrep, { desc = '[S]earch by [G]rep' })
+    vim.keymap.set('n', '<leader>sg', require('multigrep').live_multigrep, { desc = '[S]earch by Multi [G]rep' })
     vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
+    vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
     vim.keymap.set('n', '<leader>s<leader>', builtin.buffers, { desc = '[S]earch existing buffers' })
 
-    vim.keymap.set('n', '<leader>sb', builtin.lsp_document_symbols, { desc = '[S]earch Sym[b]ols' })
-    vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-    vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-    vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-    -- vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-    -- vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-    -- vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+    vim.api.nvim_create_autocmd('LspAttach', {
+      group = vim.api.nvim_create_augroup('telescope-lsp-attach', { clear = true }),
+      callback = function(event)
+        local buf = event.buf
 
-    vim.keymap.set('n', '<leader>sp', function()
-      builtin.find_files({
-        ---@diagnostic disable-next-line: param-type-mismatch
-        cwd = vim.fs.joinpath(vim.fn.stdpath('data'), 'lazy'),
-      })
-    end, { desc = '[S]earch [P]ackages' })
-
-    -- Shortcut for searching your Neovim configuration files
-    vim.keymap.set('n', '<leader>sn', function()
-      builtin.find_files({ cwd = vim.fn.stdpath('config') })
-    end, { desc = '[S]earch [N]eovim files' })
+        vim.keymap.set('n', 'gr', builtin.lsp_references, { buffer = buf, desc = '[G]oto [R]eferences' })
+        vim.keymap.set('n', 'gI', builtin.lsp_implementations, { buffer = buf, desc = '[G]oto [I]mplementation' })
+        vim.keymap.set('n', 'gd', builtin.lsp_definitions, { buffer = buf, desc = '[G]oto [D]efinition' })
+      end,
+    })
   end,
 }

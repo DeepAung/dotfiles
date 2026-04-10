@@ -2,7 +2,6 @@ return {
   'stevearc/aerial.nvim',
   opts = {
     on_attach = function(bufnr)
-      -- Jump forwards/backwards with '{' and '}'
       vim.keymap.set('n', '[a', ':AerialPrev<CR>', { buffer = bufnr, desc = 'Go to previous [A]erial' })
       vim.keymap.set('n', ']a', ':AerialNext<CR>', { buffer = bufnr, desc = 'Go to next [A]erial' })
     end,
