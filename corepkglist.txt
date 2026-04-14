@@ -52,6 +52,7 @@ iwd
 jdk17-openjdk
 jq
 just
+k9s
 kate
 kitty
 konsole
@@ -71,6 +72,7 @@ man-db
 minikube
 mpv
 nano
+neovide
 neovim
 net-tools
 network-manager-applet
@@ -80,6 +82,7 @@ npm
 ntfs-3g
 nvidia-open-dkms
 nvm
+nvtop
 obsidian
 os-prober
 pavucontrol
@@ -106,6 +109,7 @@ tldr
 tmux
 traceroute
 tree
+tree-sitter-cli
 ttf-firacode-nerd
 ttf-jetbrains-mono-nerd
 typst

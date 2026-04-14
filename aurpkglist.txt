@@ -6,6 +6,7 @@ miniconda3
 ncurses5-compat-libs
 opencode-bin
 postman-bin
+snapd
 spotify
 visual-studio-code-bin
 yay
