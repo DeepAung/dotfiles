@@ -4,6 +4,8 @@ return {
   build = ':TSUpdate',
   branch = 'main',
   config = function()
+    vim.treesitter.language.register('starlark', 'tiltfile')
+
     ---@param buf integer
     ---@param language string
     local function treesitter_try_attach(buf, language)

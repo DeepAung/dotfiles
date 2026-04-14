@@ -114,9 +114,37 @@ return {
         },
       },
       postgres_lsp = {},
+      yamlls = {
+        filetypes = { 'yaml', 'yml', 'yaml.docker-compose', 'yaml.gitlab' },
+        settings = {
+          yaml = {
+            format = { enable = true },
+            kubernetesCRDStore = { enable = true },
+            schemas = {
+              kubernetes = '*.yaml',
+            },
+          },
+        },
+      },
+      helm_ls = {
+        filetypes = { 'helm', 'helmfile', 'yaml.helm', 'yaml.helm-values' },
+        settings = {
+          ['helm-ls'] = {
+            yamlls = {
+              path = 'yaml-language-server',
+            },
+          },
+        },
+      },
+      tilt_ls = {},
     }
 
     local ensure_installed = vim.tbl_keys(servers or {})
+
+    ensure_installed = vim.tbl_filter(function(key)
+      return key ~= 'tilt_ls'
+    end, ensure_installed)
+
     vim.list_extend(ensure_installed, {
       'stylua', -- Used to format Lua code
       'prettier',

@@ -31,12 +31,12 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 
 vim.filetype.add({
-  extension = { templ = 'templ' },
+  extension = { templ = 'templ', alloy = 'hcl' },
   pattern = {
     ['%.env%.[%w_.-]+'] = 'sh',
     ['.*/hypr/.*%.conf'] = 'hyprlang',
   },
   filename = {
-    ['Tiltfile'] = 'starlark',
+    ['Tiltfile'] = 'tiltfile',
   },
 })
