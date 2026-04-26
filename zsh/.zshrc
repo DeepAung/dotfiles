@@ -82,9 +82,10 @@ function sesh-sessions() {
     exec </dev/tty
     exec <&1
     local session
+
     session=$(
-      sesh list --icons | fzf --height 70% \
-        --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
+      sesh list --icons | fzf --reverse \
+        --ansi --border --border-label ' sesh ' --prompt '⚡  ' \
         --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find' \
         --bind 'tab:down,btab:up' \
         --bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list --icons)' \
@@ -100,4 +101,7 @@ function sesh-sessions() {
   }
 }
 
-zle -N sesh-sessions
+zle     -N             sesh-sessions
+bindkey -M emacs '\es' sesh-sessions
+bindkey -M vicmd '\es' sesh-sessions
+bindkey -M viins '\es' sesh-sessions
