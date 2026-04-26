@@ -55,7 +55,8 @@ return {
     ---@type table<string, vim.lsp.Config>
     local servers = {
       dockerls = {},
-      pyright = {},
+      basedpyright = {},
+      -- jedi_language_server = {},
       cssls = {},
       tailwindcss = {},
       templ = {},
@@ -66,7 +67,7 @@ return {
       buf = {},
       graphql = {},
       clangd = {
-        cmd = { 'clangd', '--offset-encoding=utf-16' },
+        cmd = { 'clangd', '--offset-encoding=utf-16', '--header-insertion=never', '--query-driver=/usr/bin/gcc' },
         filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
       },
       emmet_ls = {
@@ -137,6 +138,7 @@ return {
         },
       },
       tilt_ls = {},
+      taplo = {},
     }
 
     local ensure_installed = vim.tbl_keys(servers or {})
