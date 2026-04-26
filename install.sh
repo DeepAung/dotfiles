@@ -23,7 +23,7 @@ echo "installing tmux tpm"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 echo "linking dotfiles"
-cd ~/.dotfiles && stow -t ~ bash common hypr kitty nvim tmux waybar wofi yazi zsh
+cd ~/.dotfiles && stow -t ~ bash common fastfetch ghostty kitty nvim sesh tmux tmuxifier wallpaper yazi zsh
 
 echo "enable and start services (NetworkManager, bluetooth, ssdm, docker)"
 sudo systemctl enable --now NetworkManager.service
