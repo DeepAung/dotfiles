@@ -3,6 +3,7 @@ ark
 asciidoc
 base
 base-devel
+bear
 blueman
 bluez-utils
 boost
@@ -28,6 +29,7 @@ fd
 feh
 firefox
 fzf
+ghostscript
 ghostty
 git
 git-delta
@@ -64,6 +66,7 @@ libheif
 libpulse
 libreoffice-still
 libva-nvidia-driver
+libxml2-legacy
 linux
 linux-firmware
 linux-headers
@@ -83,7 +86,9 @@ ntfs-3g
 nvidia-open-dkms
 nvm
 nvtop
+obs-studio
 obsidian
+opencode
 os-prober
 pavucontrol
 pipewire
@@ -96,6 +101,10 @@ plasma-workspace
 pnpm
 postgresql
 power-profiles-daemon
+python-fuse
+python-opencv
+python-requests
+qt6-wayland
 reflector
 rustup
 screen

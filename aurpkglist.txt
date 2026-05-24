@@ -2,11 +2,10 @@ antigravity
 betterdiscord-installer
 cbonsai
 figma-linux-bin
-miniconda3
 ncurses5-compat-libs
-opencode-bin
+netbird
 postman-bin
-snapd
+sesh-bin
 spotify
 visual-studio-code-bin
 yay

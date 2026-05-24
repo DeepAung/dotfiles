@@ -11,8 +11,22 @@ path = "~/Projects/cupid-2.0"
 startup_command = "v"
 windows = ["docker", "lazydocker", "lazygit"]
 
+[[session]]
+name = "2541-website"
+path = "~/Projects/2541-website"
+startup_command = "v"
+windows = ["terminal", "lazygit", "agents"]
+
+[[window]]
+name = "terminal"
+startup_script = ""
+
 [[window]]
 name = "docker"
+startup_script = ""
+
+[[window]]
+name = "agents"
 startup_script = ""
 
 [[window]]

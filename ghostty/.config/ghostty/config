@@ -2,7 +2,7 @@
 font-family = JetBrainsMono Nerd Font
 
 theme = Catppuccin Mocha
-font-size = 13
+font-size = 12
 fullscreen = true
 background-opacity = 0.8
 mouse-scroll-multiplier = 0.4

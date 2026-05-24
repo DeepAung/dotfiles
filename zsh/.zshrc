@@ -77,7 +77,7 @@ if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/pa
 if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
 
 # sesh config
-function sesh-sessions() {
+function smux() {
   {
     exec </dev/tty
     exec <&1
