@@ -34,3 +34,15 @@ vim.keymap.set('v', '<leader>x', ':lua<cr>', { desc = 'source selected' })
 
 vim.keymap.set('n', '<C-p>', ':cprev<CR>', { desc = 'cprev' })
 vim.keymap.set('n', '<C-n>', ':cnext<CR>', { desc = 'cnext' })
+
+vim.keymap.set('n', '<leader>yr', function()
+  local path = vim.fn.expand('%')
+  vim.fn.setreg('+', path)
+  vim.notify('Copied relative path: ' .. path)
+end, { desc = 'Copy relative file path' })
+
+vim.keymap.set('n', '<leader>ya', function()
+  local path = vim.fn.expand('%:p')
+  vim.fn.setreg('+', path)
+  vim.notify('Copied absolute path: ' .. path)
+end, { desc = 'Copy absolute file path' })
