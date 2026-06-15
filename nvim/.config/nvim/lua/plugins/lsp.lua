@@ -60,11 +60,13 @@ return {
       cssls = {},
       tailwindcss = {},
       templ = {},
-      -- tsgo = {},
-      vtsls = {},
+      tsgo = {
+        cmd = { 'tsgo', '--lsp', '--stdio' },
+        -- Ensure it roots at the global monorepo level
+        root_dir = vim.fs.root(0, { 'pnpm-workspace.yaml', 'turbo.json', 'nx.json', 'package.json', '.git' }),
+      },
       eslint = {},
       svelte = {},
-      rust_analyzer = {},
       buf = {},
       graphql = {},
       clangd = {
@@ -120,11 +122,11 @@ return {
         filetypes = { 'yaml', 'yml', 'yaml.docker-compose', 'yaml.gitlab' },
         settings = {
           yaml = {
-            format = { enable = true },
+            -- format = { enable = true },
             kubernetesCRDStore = { enable = true },
-            schemas = {
-              kubernetes = '*.yaml',
-            },
+            -- schemas = {
+            --   kubernetes = '*.yaml',
+            -- },
           },
         },
       },
@@ -140,6 +142,7 @@ return {
       },
       tilt_ls = {},
       taplo = {},
+      marksman = {},
     }
 
     local ensure_installed = vim.tbl_keys(servers or {})

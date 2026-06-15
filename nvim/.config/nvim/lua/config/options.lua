@@ -35,6 +35,7 @@ vim.filetype.add({
   pattern = {
     ['%.env%.[%w_.-]+'] = 'sh',
     ['.*/hypr/.*%.conf'] = 'hyprlang',
+    ['.*%.yaml%.tpl'] = 'helm',
   },
   filename = {
     ['Tiltfile'] = 'tiltfile',

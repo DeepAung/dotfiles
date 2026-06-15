@@ -17,5 +17,15 @@ return {
     })
 
     vim.keymap.set('n', '<leader>e', require('nvim-tree.api').tree.toggle, { desc = 'nvim-tree: Toggle' })
+
+    vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained' }, {
+      callback = function()
+        local api = require('nvim-tree.api')
+        -- Only refresh if the tree is currently open
+        if api.tree.is_visible() then
+          api.tree.reload()
+        end
+      end,
+    })
   end,
 }
