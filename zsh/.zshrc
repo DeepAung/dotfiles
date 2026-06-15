@@ -22,6 +22,24 @@ ZSH_THEME="gallois"
 setopt promptsubst
 zinit snippet OMZT::gallois
 
+# Machine identity
+case "$(hostname)" in
+  archlinux)
+    export MACHINE_LABEL="personal"
+    export MACHINE_COLOR="%F{green}"
+    ;;
+  thinkpad-06)
+    export MACHINE_LABEL="work"
+    export MACHINE_COLOR="%F{red}"
+    ;;
+  *)
+    export MACHINE_LABEL="$(hostname)"
+    export MACHINE_COLOR="%F{yellow}"
+    ;;
+esac
+
+PROMPT="${MACHINE_COLOR}[${MACHINE_LABEL}]%f${PROMPT}"
+
 # Load completions
 autoload -Uz compinit && compinit
 zinit cdreplay -q
