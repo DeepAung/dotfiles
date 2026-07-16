@@ -143,6 +143,7 @@ return {
       tilt_ls = {},
       taplo = {},
       marksman = {},
+      terraformls = {},
     }
 
     local ensure_installed = vim.tbl_keys(servers or {})

@@ -1,13 +1,11 @@
-antigravity
 betterdiscord-installer
 cbonsai
+electron37
 figma-linux-bin
-ncurses5-compat-libs
+mongodb-tools-bin
 netbird
-postman-bin
 sesh-bin
 spotify
-visual-studio-code-bin
 yay
 zen-browser-bin
 zoom

@@ -24,3 +24,5 @@ eval "$(zoxide init --cmd cd bash)"
 source <(kubectl completion bash)
 
 source ~/.commonrc.sh
+
+complete -C /usr/bin/terraform terraform

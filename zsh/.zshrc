@@ -119,7 +119,10 @@ function smux() {
   }
 }
 
-zle     -N             sesh-sessions
-bindkey -M emacs '\es' sesh-sessions
-bindkey -M vicmd '\es' sesh-sessions
-bindkey -M viins '\es' sesh-sessions
+zle     -N             smux
+bindkey -M emacs '\es' smux
+bindkey -M vicmd '\es' smux
+bindkey -M viins '\es' smux
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform

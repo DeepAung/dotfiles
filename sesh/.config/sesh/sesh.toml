@@ -9,7 +9,7 @@ startup_command = "v"
 name = "cupid-2.0"
 path = "~/Projects/cupid-2.0"
 startup_command = "v"
-windows = ["docker", "lazydocker", "lazygit"]
+windows = ["docker", "lazygit"]
 
 [[session]]
 name = "2541-website"
@@ -32,7 +32,3 @@ startup_script = ""
 [[window]]
 name = "lazygit"
 startup_script = "lazygit"
-
-[[window]]
-name = "lazydocker"
-startup_script = "lazydocker"

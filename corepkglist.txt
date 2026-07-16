@@ -23,7 +23,6 @@ dolphin
 dosfstools
 dpkg
 efibootmgr
-electron37
 fastfetch
 fd
 feh
@@ -42,6 +41,7 @@ grub
 gst-plugin-pipewire
 gtkwave
 gwenview
+helix
 helm
 htop
 iftop
@@ -88,6 +88,7 @@ nvm
 nvtop
 obs-studio
 obsidian
+openai-codex
 opencode
 os-prober
 pavucontrol
@@ -114,6 +115,7 @@ steam
 stow
 syncthing
 tailscale
+terraform
 tldr
 tmux
 traceroute

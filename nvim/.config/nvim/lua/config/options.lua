@@ -4,7 +4,7 @@ vim.g.have_nerd_font = true
 
 if vim.g.neovide then
   vim.g.neovide_cursor_animation_length = 0.04
-  vim.opt.guifont = { 'JetBrainsMono Nerd Font', 'Sarabun', ':h13' }
+  vim.opt.guifont = { 'JetBrainsMono Nerd Font', 'Sarabun', ':h12' }
 end
 
 vim.opt.number = true
@@ -39,5 +39,6 @@ vim.filetype.add({
   },
   filename = {
     ['Tiltfile'] = 'tiltfile',
+    ['.env'] = 'sh',
   },
 })

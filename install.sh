@@ -47,8 +47,11 @@ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 # go install -tags 'postgres sqlite sqlite3' github.com/golang-migrate/migrate/v4/cmd/migrate@latest # migrate
 go install github.com/pressly/goose/v3/cmd/goose@latest # goose
 
-# echo "install duckdb"
-# curl https://install.duckdb.org | sh
+echo "install cursor cli"
+curl https://cursor.com/install -fsS | bash
+
+echo "install mermaid cli"
+sudo npm install -g @mermaid-js/mermaid-cli
 
 echo "install tilt"
 curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/install.sh | bash

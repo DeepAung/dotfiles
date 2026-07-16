@@ -46,3 +46,23 @@ vim.keymap.set('n', '<leader>ya', function()
   vim.fn.setreg('+', path)
   vim.notify('Copied absolute path: ' .. path)
 end, { desc = 'Copy absolute file path' })
+
+vim.keymap.set('n', '<leader>xo', function()
+  -- Get absolute path of current buffer
+  local file_path = vim.fn.expand('%:p')
+
+  -- Ensure the buffer is a valid file on disk
+  if file_path ~= '' and vim.bo.buftype == '' then
+    -- Save file changes first
+    vim.cmd('write')
+    -- Execute xdg-open asynchronously using vim.ui.open (Neovim 0.10+)
+    -- Fallback to system command if on an older version
+    if vim.ui and vim.ui.open then
+      vim.ui.open(file_path)
+    else
+      vim.fn.system({ 'xdg-open', file_path })
+    end
+  else
+    vim.notify('Current buffer is not a valid file', vim.log.levels.WARN)
+  end
+end, { desc = 'Open current buffer with xdg-open' })
