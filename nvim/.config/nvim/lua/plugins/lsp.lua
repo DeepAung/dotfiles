@@ -60,9 +60,25 @@ return {
       cssls = {},
       tailwindcss = {},
       templ = {},
-      tsgo = {
-        cmd = { 'tsgo', '--lsp', '--stdio' },
-        -- Ensure it roots at the global monorepo level
+      -- tsgo = {
+      --   cmd = { 'tsgo', '--lsp', '--stdio' },
+      --   -- Ensure it roots at the global monorepo level
+      --   root_dir = vim.fs.root(0, { 'pnpm-workspace.yaml', 'turbo.json', 'nx.json', 'package.json', '.git' }),
+      -- },
+      vtsls = {
+        settings = {
+          vtsls = {
+            tsserver = {
+              globalPlugins = {
+                {
+                  name = 'typescript-svelte-plugin',
+                  location = vim.fn.stdpath('data') .. '/mason/packages/svelte-language-server/node_modules/typescript-svelte-plugin',
+                  enableForWorkspaceTypeScriptVersions = true,
+                },
+              },
+            },
+          },
+        },
         root_dir = vim.fs.root(0, { 'pnpm-workspace.yaml', 'turbo.json', 'nx.json', 'package.json', '.git' }),
       },
       eslint = {},
