@@ -61,68 +61,6 @@ function y() {
   rm -f -- "$tmp"
 }
 
-function git-switch-account() {
-  set -euo pipefail
-
-  local json=~/.ssh/accounts.json
-
-  local profile=$(jq -r '.[].identity' $json | fzf)
-  local username=$(cat $json | jq ".[] | select(.identity==\"$profile\") | .username")
-  local email=$(cat $json | jq ".[] | select(.identity==\"$profile\") | .email")
-
-  git config --global user.name $username
-  git config --global user.email $email
-  echo "✅ git account switched to $profile"
-}
-
-function generate-ssh-config() {
-  set -euo pipefail
-
-  local json=~/.ssh/accounts.json
-  local config=~/.ssh/config
-
-  echo "# Auto-generated SSH config" > "$config"
-
-  jq -r '.[] |
-"Host \(.host)
-\tHostName github.com
-\tIdentityFile ~/.ssh/\(.identity)
-\tIdentitiesOnly yes
-"' "$json" >> "$config"
-
-  # chmod 644 "$config"
-  echo "✅ SSH config written to $config"
-}
-
-# ------------------------------------------------------------------------------
-# 📁 Example ~/.ssh/ folder structure:
-#
-# ~/.ssh/
-# ├── accounts.json        # Contains user profiles
-# ├── config               # SSH config file (can be generated)
-# ├── ashira-a             # Private key (workplace)
-# ├── ashira-a.pub         # Public key (workplace)
-# ├── deepaung             # Private key (personal)
-# ├── deepaung.pub         # Public key (personal)
-# └── known_hosts
-#
-# 🧾 Example accounts.json:
-# [
-#   {
-#     "identity": "deepaung",
-#     "username": "DeepAung",
-#     "email": "deepaung@gmail.com",
-#     "host": "github.com"
-#   },
-#   {
-#     "identity": "ashira-a",
-#     "username": "ashira.a",
-#     "email": "ashira.a@gmail.com"
-#     "host": "github.com-workplace"
-#   }
-# ]
-# ------------------------------------------------------------------------------
-
 function cowsay_random_thing() {
   cowsay_array=($(find /usr/share/cowsay/cows -type f))
   selected_cowsay=${cowsay_array[ $RANDOM % ${#cowsay_array[@]} ]}
