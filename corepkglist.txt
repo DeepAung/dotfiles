@@ -34,6 +34,7 @@ git
 git-delta
 github-cli
 go
+go-yq
 godot
 godot-mono
 gparted
@@ -73,6 +74,7 @@ linux-headers
 lolcat
 man-db
 minikube
+mkcert
 mpv
 nano
 neovide
@@ -80,6 +82,7 @@ neovim
 net-tools
 network-manager-applet
 networkmanager
+networkmanager-openvpn
 noto-fonts-cjk
 npm
 ntfs-3g
@@ -90,6 +93,7 @@ obs-studio
 obsidian
 openai-codex
 opencode
+openvpn
 os-prober
 pavucontrol
 pipewire
@@ -124,6 +128,7 @@ tree-sitter-cli
 ttf-firacode-nerd
 ttf-jetbrains-mono-nerd
 typst
+unison
 unzip
 uv
 vim
