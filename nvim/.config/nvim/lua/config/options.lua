@@ -36,6 +36,7 @@ vim.filetype.add({
     ['%.env%.[%w_.-]+'] = 'sh',
     ['.*/hypr/.*%.conf'] = 'hyprlang',
     ['.*%.yaml%.tpl'] = 'helm',
+    ['.*%.tfvars%.example'] = 'terraform',
   },
   filename = {
     ['Tiltfile'] = 'tiltfile',

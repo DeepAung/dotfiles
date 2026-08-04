@@ -127,4 +127,7 @@ bindkey -M viins '\es' smux
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
 
-source <(railway completion zsh)
+# >>> railway initialize >>>
+source "$HOME/.railway/env"
+# <<< railway initialize <<<
+# railway completion is autoloaded from ~/.cache/zinit/completions/_railway (regenerate with: railway completion zsh > ~/.cache/zinit/completions/_railway)
