@@ -25,6 +25,16 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 echo "linking dotfiles"
 cd ~/.dotfiles && stow -t ~ bash common fastfetch ghostty kitty nvim sesh tmux tmuxifier wallpaper yazi zsh
 
+echo "generating cached shell completions"
+mkdir -p ~/.cache/zinit/completions ~/.local/share/bash-completion/completions
+if command -v kubectl >/dev/null; then
+  kubectl completion zsh > ~/.cache/zinit/completions/_kubectl
+  kubectl completion bash > ~/.local/share/bash-completion/completions/kubectl
+fi
+if command -v railway >/dev/null; then
+  railway completion zsh > ~/.cache/zinit/completions/_railway
+fi
+
 echo "enable and start services (NetworkManager, bluetooth, ssdm, docker)"
 sudo systemctl enable --now NetworkManager.service
 sudo systemctl enable --now bluetooth.service

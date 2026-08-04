@@ -13,8 +13,23 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH="/home/deepaung/.local/bin:$PATH"
 eval "$(tmuxifier init -)"
 
-# init nvm
-source /usr/share/nvm/init-nvm.sh
+# lazy-load nvm: put default version's bin on PATH instantly, load full nvm on first `nvm` call
+NVM_DIR="$HOME/.nvm"
+[ -n "${XDG_CONFIG_HOME:-}" ] && NVM_DIR="$XDG_CONFIG_HOME/nvm"
+export NVM_DIR
+_nvm_alias=$(cat "$NVM_DIR/alias/default" 2>/dev/null)
+if [ -n "$_nvm_alias" ]; then
+  for _nvm_bin in "$NVM_DIR"/versions/node/v${_nvm_alias}*/bin; do
+    [ -d "$_nvm_bin" ] && PATH="$_nvm_bin:$PATH" && break
+  done
+  unset _nvm_bin
+fi
+unset _nvm_alias
+nvm() {
+  unset -f nvm
+  source /usr/share/nvm/init-nvm.sh
+  nvm "$@"
+}
 
 # enable conda
 [ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh

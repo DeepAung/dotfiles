@@ -14,6 +14,7 @@ cloudflared
 cmake
 cowsay
 dbeaver
+deno
 discord
 dkms
 docker
@@ -75,6 +76,7 @@ lolcat
 man-db
 minikube
 mkcert
+mosh
 mpv
 nano
 neovide
@@ -120,6 +122,7 @@ stow
 syncthing
 tailscale
 terraform
+tesseract-data-tha
 tldr
 tmux
 traceroute

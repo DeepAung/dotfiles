@@ -21,7 +21,7 @@ fi
 
 eval "$(fzf --bash)"
 eval "$(zoxide init --cmd cd bash)"
-source <(kubectl completion bash)
+# kubectl completion is loaded by bash-completion from ~/.local/share/bash-completion/completions/kubectl (regenerate with: kubectl completion bash > ~/.local/share/bash-completion/completions/kubectl)
 
 source ~/.commonrc.sh
 

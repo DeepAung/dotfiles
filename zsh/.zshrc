@@ -18,7 +18,6 @@ zinit snippet OMZP::command-not-found
 zinit snippet OMZL::git.zsh
 
 # Use OMZ theme
-ZSH_THEME="gallois"
 setopt promptsubst
 zinit snippet OMZT::gallois
 
@@ -57,7 +56,7 @@ bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
 # History
-HISTSIZE=10000
+HISTSIZE=100000
 SAVEHIST=$HISTSIZE
 HISTFILE=~/.zsh_history
 HISTDUP=erase
@@ -67,6 +66,7 @@ setopt hist_ignore_space
 setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_find_no_dups
+setopt hist_reduce_blanks
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -76,7 +76,7 @@ zstyle ':completion:*' menu select
 
 source <(fzf --zsh)
 eval "$(zoxide init --cmd cd zsh)"
-source <(kubectl completion zsh)
+# kubectl completion is autoloaded from ~/.cache/zinit/completions/_kubectl (regenerate with: kubectl completion zsh > ~/.cache/zinit/completions/_kubectl)
 
 source ~/.commonrc.sh
 
