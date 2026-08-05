@@ -1,3 +1,5 @@
+local oxc = require('config.oxc')
+
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
@@ -81,7 +83,35 @@ return {
         },
         root_dir = vim.fs.root(0, { 'pnpm-workspace.yaml', 'turbo.json', 'nx.json', 'package.json', '.git' }),
       },
-      eslint = {},
+      eslint = {
+        root_dir = function(bufnr, on_dir)
+          if oxc.is_deno_project(bufnr) or oxc.has_oxlint_config(bufnr) then
+            return
+          end
+
+          local project_root = oxc.web_project_root(bufnr)
+          local filename = vim.api.nvim_buf_get_name(bufnr)
+          local is_buffer_using_eslint = vim.fs.find(oxc.eslint_config_files, {
+            path = filename,
+            type = 'file',
+            limit = 1,
+            upward = true,
+            stop = vim.fs.dirname(project_root),
+          })[1]
+
+          if is_buffer_using_eslint or oxc.has_package_json_field(bufnr, '"eslintConfig"%s*:', project_root) then
+            on_dir(project_root)
+          end
+        end,
+      },
+      oxlint = {
+        root_dir = function(bufnr, on_dir)
+          local root = vim.fs.root(bufnr, oxc.oxlint_config_files)
+          if root then
+            on_dir(root)
+          end
+        end,
+      },
       svelte = {},
       buf = {},
       graphql = {},
@@ -124,7 +154,16 @@ return {
           Lua = {},
         },
       },
-      gopls = {},
+      gopls = {
+        settings = {
+          gopls = {
+            -- Enables placeholders for function signatures when completing
+            usePlaceholders = true,
+            -- Enables completing the function with parentheses
+            completeFunctionCalls = true,
+          },
+        },
+      },
       verible = {
         cmd = {
           'verible-verilog-ls',
@@ -160,6 +199,7 @@ return {
       taplo = {},
       marksman = {},
       terraformls = {},
+      denols = {},
     }
 
     local ensure_installed = vim.tbl_keys(servers or {})
@@ -171,6 +211,7 @@ return {
     vim.list_extend(ensure_installed, {
       'stylua', -- Used to format Lua code
       'prettier',
+      'oxfmt',
       'clang-format',
       'gofumpt',
       'goimports',
