@@ -11,6 +11,7 @@ export PATH="$PATH:$HOME/.cargo/bin"
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH="/home/deepaung/.local/bin:$PATH"
+export PATH="/home/deepaung/.bun/bin:$PATH"
 eval "$(tmuxifier init -)"
 
 # lazy-load nvm: put default version's bin on PATH instantly, load full nvm on first `nvm` call
