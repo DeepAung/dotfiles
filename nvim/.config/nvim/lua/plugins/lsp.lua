@@ -200,6 +200,7 @@ return {
       marksman = {},
       terraformls = {},
       denols = {},
+      jsonls = {},
     }
 
     local ensure_installed = vim.tbl_keys(servers or {})
