@@ -3,6 +3,7 @@ cbonsai
 electron37
 figma-linux-bin
 mongodb-tools-bin
+ncurses5-compat-libs
 netbird
 sesh-bin
 spotify

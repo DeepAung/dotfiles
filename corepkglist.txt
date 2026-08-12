@@ -29,10 +29,12 @@ fd
 feh
 firefox
 fzf
+gamemode
 ghostscript
 ghostty
 git
 git-delta
+git-lfs
 github-cli
 go
 go-yq
@@ -63,6 +65,8 @@ konsole
 kubectx
 lazydocker
 lazygit
+lib32-gamemode
+lib32-mangohud
 lib32-vulkan-intel
 libheif
 libpulse
@@ -74,6 +78,7 @@ linux-firmware
 linux-headers
 lolcat
 man-db
+mangohud
 minikube
 mkcert
 mosh
@@ -89,6 +94,7 @@ noto-fonts-cjk
 npm
 ntfs-3g
 nvidia-open-dkms
+nvidia-prime
 nvm
 nvtop
 obs-studio
