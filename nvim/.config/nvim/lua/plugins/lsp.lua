@@ -201,6 +201,7 @@ return {
       terraformls = {},
       denols = {},
       jsonls = {},
+      wgsl_analyzer = {},
     }
 
     local ensure_installed = vim.tbl_keys(servers or {})
