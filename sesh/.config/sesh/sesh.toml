@@ -17,6 +17,13 @@ path = "~/Projects/2541-website"
 startup_command = "v"
 windows = ["terminal", "lazygit", "agents"]
 
+[[session]]
+name = "project-tracker"
+path = "~/work/esc/projects/esc-project-tracker-refresh-api/"
+startup_command = "v"
+windows = ["terminal", "lazygit", "agents"]
+
+
 [[window]]
 name = "terminal"
 startup_script = ""
