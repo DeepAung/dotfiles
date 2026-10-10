@@ -44,6 +44,8 @@ alias k='kubectl'
 alias hypr-change-wallpaper='hyprctl hyprpaper reload ,$(find ~/.dotfiles/wallpapers -type f | fzf)'
 alias fs='sudo du -h --max-depth=1 | sort -hr'
 alias fsh='fs | head -n 10'
+alias task='go-task'
+export TASK_EXE=go-task
 
 # setup cisco anyconnect
 alias vpn='/opt/cisco/anyconnect/bin/vpn'
@@ -81,6 +83,26 @@ function cowsay_random_thing() {
   cowsay_array=($(find /usr/share/cowsay/cows -type f))
   selected_cowsay=${cowsay_array[ $RANDOM % ${#cowsay_array[@]} ]}
   fortune | cowsay -f $selected_cowsay | lolcat
+}
+
+function packettracer() {
+  local TMPDIR=$(mktemp -d)
+
+  cat > "$TMPDIR/xdg-open" <<'EOF'
+#!/bin/bash
+unset LD_LIBRARY_PATH
+exec /usr/bin/xdg-open "$@"
+EOF
+
+  chmod +x "$TMPDIR/xdg-open"
+
+  export XDG_CURRENT_DESKTOP=GNOME
+  export XDG_SESSION_DESKTOP=gnome
+  export QT_QPA_PLATFORM=xcb
+  export QT_QUICK_CONTROLS_STYLE=Basic
+  unset KDE_SESSION_VERSION
+
+  PATH="$TMPDIR:$PATH" exec /usr/lib/packettracer/packettracer.AppImage --no-sandbox "$@"
 }
 
 fastfetch --config arch

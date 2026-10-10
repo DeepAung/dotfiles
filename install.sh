@@ -33,6 +33,11 @@ if command -v kubectl >/dev/null; then
 fi
 if command -v railway >/dev/null; then
   railway completion zsh > ~/.cache/zinit/completions/_railway
+  railway completion bash > ~/.local/share/bash-completion/completions/railway
+fi
+if command -v go-task >/dev/null; then
+  go-task --completion zsh > ~/.cache/zinit/completions/_task
+  go-task --completion bash > ~/.local/share/bash-completion/completions/gotask
 fi
 
 echo "enable and start services (NetworkManager, bluetooth, ssdm, docker)"

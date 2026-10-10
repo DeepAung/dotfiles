@@ -202,6 +202,14 @@ return {
       denols = {},
       jsonls = {},
       wgsl_analyzer = {},
+      glsl_analyzer = {},
+      cucumber_language_server = {
+        settings = {
+          cucumber = {
+            glue = { '**/tests/**/*_test.go' },
+          },
+        },
+      },
     }
 
     local ensure_installed = vim.tbl_keys(servers or {})

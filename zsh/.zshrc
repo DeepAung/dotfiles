@@ -40,8 +40,13 @@ esac
 PROMPT="${MACHINE_COLOR}[${MACHINE_LABEL}]%f${PROMPT}"
 
 # Load completions
-autoload -Uz compinit && compinit
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
 zinit cdreplay -q
+compdef _task go-task task
 autoload -U history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
@@ -76,15 +81,14 @@ zstyle ':completion:*' menu select
 
 source <(fzf --zsh)
 eval "$(zoxide init --cmd cd zsh)"
-# kubectl completion is autoloaded from ~/.cache/zinit/completions/_kubectl (regenerate with: kubectl completion zsh > ~/.cache/zinit/completions/_kubectl)
 
 source ~/.commonrc.sh
 
 # pnpm
 export PNPM_HOME="/home/deepaung/.local/share/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 # pnpm end
 
@@ -130,4 +134,7 @@ complete -o nospace -C /usr/bin/terraform terraform
 # >>> railway initialize >>>
 source "$HOME/.railway/env"
 # <<< railway initialize <<<
+
+# kubectl completion is autoloaded from ~/.cache/zinit/completions/_kubectl (regenerate with: kubectl completion zsh > ~/.cache/zinit/completions/_kubectl)
 # railway completion is autoloaded from ~/.cache/zinit/completions/_railway (regenerate with: railway completion zsh > ~/.cache/zinit/completions/_railway)
+# go-task completion is autoloaded from ~/.cache/zinit/completions/_task (regenerate with: go-task --completion zsh > ~/.cache/zinit/completions/_task)

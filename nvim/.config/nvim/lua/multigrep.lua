@@ -31,7 +31,7 @@ M.live_multigrep = function(opts)
       return vim
         .iter({
           args,
-          { '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case' },
+          { '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case', '--hidden', '-g', '!.git' },
         })
         :flatten()
         :totable()
