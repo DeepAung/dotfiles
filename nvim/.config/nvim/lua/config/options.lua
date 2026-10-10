@@ -45,6 +45,14 @@ vim.filetype.add({
   },
 })
 
+vim.diagnostic.config({
+  jump = {
+    on_jump = function(_, bufnr)
+      vim.diagnostic.open_float({ bufnr = bufnr, scope = 'cursor', focus = false })
+    end,
+  },
+})
+
 -- vim.g.clipboard = {
 --   name = 'OSC 52',
 --   copy = {
