@@ -1,5 +1,6 @@
 betterdiscord-installer
 cbonsai
+cursor-bin
 electron37
 figma-linux-bin
 illogical-impulse-audio
