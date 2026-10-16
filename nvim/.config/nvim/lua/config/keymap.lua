@@ -66,3 +66,13 @@ vim.keymap.set('n', '<leader>xo', function()
     vim.notify('Current buffer is not a valid file', vim.log.levels.WARN)
   end
 end, { desc = 'Open current buffer with xdg-open' })
+
+vim.keymap.set('n', '<leader>mz', function()
+  local file_path = vim.fn.expand('%:p')
+  if file_path == '' or vim.bo.buftype ~= '' then
+    vim.notify('Current buffer is not a valid file', vim.log.levels.WARN)
+    return
+  end
+  vim.cmd('write')
+  vim.system({ 'zed', file_path }, { detach = true })
+end, { desc = 'Open in Zed markdown preview' })
