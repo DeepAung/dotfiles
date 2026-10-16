@@ -81,7 +81,15 @@ return {
             },
           },
         },
-        root_dir = vim.fs.root(0, { 'pnpm-workspace.yaml', 'turbo.json', 'nx.json', 'package.json', '.git' }),
+        root_dir = function(bufnr, on_dir)
+          if oxc.is_deno_project(bufnr) or oxc.has_oxlint_config(bufnr) then
+            return
+          end
+          local root = vim.fs.root(bufnr, { 'pnpm-workspace.yaml', 'turbo.json', 'nx.json', 'package.json', '.git' })
+          if root then
+            on_dir(root)
+          end
+        end,
       },
       eslint = {
         root_dir = function(bufnr, on_dir)
