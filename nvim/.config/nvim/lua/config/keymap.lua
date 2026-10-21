@@ -74,5 +74,5 @@ vim.keymap.set('n', '<leader>mz', function()
     return
   end
   vim.cmd('write')
-  vim.system({ 'zed', file_path }, { detach = true })
+  vim.system({ 'zeditor', file_path }, { detach = true })
 end, { desc = 'Open in Zed markdown preview' })
