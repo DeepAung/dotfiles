@@ -8,7 +8,7 @@ return {
       enabled = true,
       timeout = 3000,
     },
-    image = {},
+    image = { enabled = false },
   },
   keys = {
     {
